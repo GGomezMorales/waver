@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="waver_gazebo">
+
+  <xacro:include filename="$(find waver_description)/urdf/util.xacro" />
+
+  <!-- <gazebo>
+    <plugin name="control" filename="libgazebo_ros_control.so" />
+  </gazebo> -->
+
+  <gazebo reference="base_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="top_shell_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <gazebo reference="accessories_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="accessories1_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="board_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+
+  <gazebo reference="oled_screen_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/BlueGlow</material>
+  </gazebo>
+
+  <gazebo reference="wheel_back_left_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="wheel_front_left_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="wheel_front_right_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="wheel_back_right_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+</robot>
