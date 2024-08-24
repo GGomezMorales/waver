@@ -1,0 +1,12 @@
+<launch>
+  <arg name="model" default="$(find waver_description)/urdf/waver.xacro" />
+  <arg name="controller_file" default="$(find waver_control)/param/controller.yaml" />
+  <arg name="controller_param" default="waver_controller" />
+  <rosparam file="$(arg controller_file)" command="load" />
+
+  <include file="$(find waver_description)/launch/description.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" args="$(arg controller_param)" />
+</launch>
