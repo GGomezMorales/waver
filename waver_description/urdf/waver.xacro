@@ -288,29 +288,4 @@
     <axis xyz="0 1 0" />
   </joint>
 
-  <gazebo>
-    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-      <robotNamespace></robotNamespace>
-      <updateRate>100.0</updateRate>
-      <leftFrontJoint>wheel_front_left_joint</leftFrontJoint>
-      <rightFrontJoint>wheel_front_right_joint</rightFrontJoint>
-      <leftRearJoint>wheel_back_left_joint</leftRearJoint>
-      <rightRearJoint>wheel_back_right_joint</rightRearJoint>
-      <wheelSeparation>${wheel_separation}</wheelSeparation>
-      <wheelDiameter>${2*wheel_radius}</wheelDiameter>
-      <torque>2</torque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>base_footprint</robotBaseFrame>
-      <publishWheelTF>true</publishWheelTF>
-      <publishOdom>true</publishOdom>
-      <publishWheelJointState>true</publishWheelJointState>
-      <covariance_x>0.0001</covariance_x>
-      <covariance_y>0.0001</covariance_y>
-      <covariance_yaw>0.01</covariance_yaw>
-      <broadcastTF>true</broadcastTF>
-    </plugin>
-  </gazebo>
-
 </robot>

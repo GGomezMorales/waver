@@ -7,7 +7,7 @@
     <arg name="headless" default="false" />
     <arg name="debug" default="false" />
     <arg name="controller_file" default="$(find waver_control)/param/controller.yaml" />
-    <arg name="controller_param" default="waver_controller_vel waver_state_controller" />
+    <arg name="controller_param" default="waver" />
     <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
 
     <!-- Gazebo launch -->
