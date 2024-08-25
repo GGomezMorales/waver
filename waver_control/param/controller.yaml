@@ -7,7 +7,7 @@ waver:
   twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
 
   base_frame_id: base_footprint
-  publish_cmd: false
+  publish_cmd: true
   allow_multiple_cmd_vel_publishers: true
   wheel_separation: 0.123
   wheel_radius: 0.0406
