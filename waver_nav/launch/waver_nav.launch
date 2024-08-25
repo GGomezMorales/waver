@@ -9,25 +9,25 @@
     <arg name="global" default="base" />
     <arg name="local" default="teb" />
 
-    <!-- Gazebo node -->
+    <!-- Gazebo launch -->
     <include file="$(find waver_gazebo)/launch/gazebo.launch" />
 
-    <!-- Map server node -->
+    <!-- Map server launch -->
     <include file="$(find waver_nav)/launch/map_server.launch">
         <arg name="map_file" value="$(arg map_file)" />
     </include>
 
-    <!-- Rviz node -->
+    <!-- Rviz launch -->
     <include file="$(find waver_viz)/launch/rviz.launch">
         <arg name="model" value="$(arg model)" />
         <arg name="rviz_config" value="$(arg rviz_config)" />
         <arg name="gui" value="$(arg gui)" />
     </include>
 
-    <!-- AMCL node -->
+    <!-- AMCL launch -->
     <include file="$(find waver_nav)/launch/amcl.launch" />
 
-    <!-- Move base node -->
+    <!-- Move base launch -->
     <include file="$(find waver_nav)/launch/move_base.launch" >
         <arg name="base_global_planner" value="$(arg base_global_planner)" />
         <arg name="base_local_planner" value="$(arg base_local_planner)" />

@@ -1,8 +1,13 @@
 <launch>
-    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
-        <rosparam file="$(find waver_nav)/param/gmapping.yaml" command="load" />
-    </node>
     <arg name="rviz_config" default="$(find waver_nav)/rviz/waver.rviz" />
+    <arg name="gmapping_file" default="$(find waver_nav)/param/gmapping.yaml" />
+
+    <!-- Gmapping node -->
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+        <rosparam command="load" file="$(arg gmapping_file)" />
+    </node>
+
+    <!-- RViz node -->
     <include file="$(find waver_viz)/launch/rviz.launch">
         <arg name="rviz_config" value="$(arg rviz_config)" />
     </include>

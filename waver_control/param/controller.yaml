@@ -1,4 +1,8 @@
-waver_controller:
+waver_state_controller:
+  type: "joint_state_controller/JointStateController"
+  publish_rate: 50
+
+waver_vel_controller:
   type        : "diff_drive_controller/DiffDriveController"
   left_wheel:  ['wheel_front_left_joint', 'wheel_back_left_joint']
   right_wheel: ['wheel_front_right_joint', 'wheel_back_right_joint']

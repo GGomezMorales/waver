@@ -1,4 +1,6 @@
 <launch>
     <arg name="map_file" default="$(find waver_nav)/maps/coworking_map.yaml"/>
+
+    <!-- Map server node -->
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
 </launch>
