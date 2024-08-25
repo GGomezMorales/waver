@@ -9,6 +9,12 @@
     <arg name="model" value="$(arg model)" />
   </include>
 
+  <!-- Relay cmd topic node -->
+  <node name="cmd_vel_relay" pkg="topic_tools" type="relay" args="/cmd_vel /$(arg controller_param)/cmd_vel" />
+
+  <!-- Relay odom topic node -->
+  <node name="odom_relay" pkg="topic_tools" type="relay" args="/$(arg controller_param)/odom /odom" />
+
   <!-- Controller spawner node -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" args="$(arg controller_param)" />
 </launch>
