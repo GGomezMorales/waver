@@ -1,0 +1,6 @@
+<launch>
+    <node name="motor_driver" pkg="waver_robot" type="motor_controller.cpp" output="screen">
+        <param name="vel_max" value="200" />
+        <!-- <remap from="/motors/motor_twist" to="/cmd_vel"/> -->
+    </node>
+</launch>
