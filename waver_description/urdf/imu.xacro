@@ -8,7 +8,7 @@
         <inertial>
             <mass value="${mass_imu}" />
             <origin xyz="${mass_center_imu}" rpy="0 0 ${pi/2}" />
-            <inertia ixx="5.313564367625195e-06" iyy="5.192849578266062e-06" izz="8.832425081682543e-06" ixy="0.0" iyz="0.0" ixz="0.0" />
+            <inertia ixx="4.297064285474092e-13" iyy="4.199442581059605e-13" izz="7.142756866533696e-13" ixy="0.0" iyz="0.0" ixz="0.0" />
         </inertial>
         <visual>
             <origin xyz="${position_imu}" rpy="0 0 ${pi/2}" />

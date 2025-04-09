@@ -8,8 +8,7 @@
         <inertial>
             <mass value="${mass_lidar}" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="1.3010226e-05" iyy="1.6209553e-05" izz="2.1055697e-05" ixy="0.0" iyz="0.0"
-                ixz="0.0" />
+            <inertia ixx="1.1969407982864896e-05" iyy="1.4912788506851203e-05" izz="1.9371239273809308e-05" ixy="0.0" iyz="0.0" ixz="0.0" />
         </inertial>
         <visual>
             <origin xyz="0 0 -0.027" rpy="0 0 ${pi/2}" />
