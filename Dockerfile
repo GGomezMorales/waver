@@ -45,12 +45,6 @@ RUN apt-get update && apt-get install -y \
 USER root
 ENV RESOLUTION=1820x880
 
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc
-RUN echo "alias bros='cd ${WS} && catkin build'" >> /root/.bashrc
-RUN echo "alias dros='cd ${WS} && rosdep update && rosdep install --from-paths src --ignore-src -r -y'" >> /root/.bashrc
-RUN echo "alias sros='source /opt/ros/${ROS_DISTRO}/setup.bash && source ${WS}/devel/setup.bash'" >> /root/.bashrc
-
-RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
-RUN echo "alias bros='cd ${WS} && catkin build'" >> ~/.bashrc
-RUN echo "alias dros='cd ${WS} && rosdep update && rosdep install --from-paths src --ignore-src -r -y'" >> ~/.bashrc
-RUN echo "alias sros='source /opt/ros/${ROS_DISTRO}/setup.bash && source ${WS}/devel/setup.bash'" >> ~/.bashrc
+COPY ./autostart.sh /${WS_ROS}
+RUN chmod +x /${WS_ROS}/autostart.sh
+RUN ./autostart.sh
