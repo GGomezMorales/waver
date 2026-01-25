@@ -51,12 +51,11 @@ To access graphical interfaces like Gazebo and RViz in Docker on Windows and mac
 
 For resources and instructions on how to set up and use VNC viewers on Windows and macOS to run this project, follow the detailed guide provided [here](https://github.com/roboticamed/docker_ros_vnc?tab=readme-ov-file#docker-ros-noetic-vnc)
 
-
 ### Installing Docker on Raspberry PI
 
 To install Docker on a Raspberry Pi, please follow the detailed guide provided [here](https://roboticamed.github.io/docs/guides/setup/rpi4_setup/#docker)
 
-### How to use
+## How to use
 
 This project includes scripts in the [scripts](https://github.com/GGomezMorales/waver/tree/noetic/scripts) folder to make Docker easier to use. These scripts handle tasks such as building the Docker image, running the container, and accessing the container's terminal.
 
@@ -89,6 +88,36 @@ This project includes scripts in the [scripts](https://github.com/GGomezMorales/
      ```bash
      ./scripts/bash.sh
      ```
+
+## Helper aliases & commands
+
+This project includes a set of preconfigured aliases and a unified command utility to optimize the development workflow within the Docker container. These are automatically loaded when entering the container.
+
+**Core aliases:**
+
+- bros (**B**uild **ROS**): Compiles the entire workspace using catkin build system.
+
+  ```bash
+  bros
+  ```
+
+  Equivalent to: `cd ${WS} && catkin build`
+
+- dros (**D**ependencies **ROS**): Installs missing system dependencies for all packages in the source folder.
+
+  ```bash
+  dros
+  ```
+
+  Equivalent to: `cd ${WS} && rosdep update && rosdep install --from-paths src --ignore-src -r -y`
+
+- sros (**S**ource **ROS**): Sources the ROS installation and your workspace overlay. Always run this command in every new terminal you open inside the container before running other ROS commands.
+
+  ```bash
+  sros
+  ```
+
+  Equivalent to: `source /opt/ros/${ROS_DISTRO}/setup.bash && source ${WS}/devel/setup.bash`
 
 <!-- ### Real Implementation
 #### Hardware Setup

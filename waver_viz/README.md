@@ -4,54 +4,47 @@
 
 The `waver_rviz` package provides visualization for the Wave Rover robot within the RViz environment. This package includes the necessary configuration files and a launch file to visualize the robot's sensors, state, and environment in real-time.
 
-## Visualization
+## Dependencies
 
-### Prerequisites
-Before using the `waver_rviz` package, ensure you have the following installed:
-- Docker. [See for details](https://github.com/GGomezMorales/waver?tab=readme-ov-file#how-to-use).
-- [waver_description package](https://github.com/GGomezMorales/waver/tree/noetic/waver_description).
+**Required ROS packages**
 
-### Visualization steps
+- [`waver_description`](https://github.com/GGomezMorales/waver/tree/noetic/waver_description)
+- `catkin`
+- `rviz`
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/GGomezMorales/waver.git
-   cd waver
-   ```
+## Usage
 
-2. Build the Docker image:
-   ```bash
-   ./scripts/build.sh
-   ```
+This package can be launched using the project's helper aliases (inside the Docker container) or via standard ROS launch commands.
 
-3. Run the Docker container:
-   There are three ways to run a container, depending on your host machine:
-      - **`run_docker.sh`:** Uses the standard Docker command to run the container.
-         ```bash
-         ./scripts/run_docker.sh
-         ```
-      - **`run_cpu.sh`:** Uses [rocker](https://github.com/osrf/rocker) to run the container on a CPU environment.
-         ```bash
-         ./scripts/run_cpu.sh
-         ```
-      - **`run_nvidia.sh`:** Uses [rocker](https://github.com/osrf/rocker) to run the container with NVIDIA GPU support.
-         ```bash
-         ./scripts/run_nvidia.sh
-         ```
+### Docker container environment (Recommended)
 
-   After running the container:
-   ```bash
-   root@10bb71e2357e:/waver_ws# 
-   ```
+If you are working within the provided Docker environment, a helper function `waver` is defined in `autostart.sh` to simplify the build, source, and launch process.
 
-4. ROS environment setup:
-   The Docker image includes an alias to simplify the process of sourcing and building packages within a catkin workspace. To set up the ROS environment, use the following command:
-   ```bash
-   sros
-   ```
+To visualize the robot in RViz:
 
-5. RViz launch:
-   Finally, to launch the RViz visualization with the Wave Rover, use the following command:
-   ```bash
-   roslaunch waver_viz rviz.launch
-   ```
+```bash
+waver rviz
+```
+
+### Standard ROS environment
+
+If you are not using the Docker container or prefer standard ROS commands, ensure your workspace is built and sourced, then launch the package manually using `roslaunch`:
+
+```bash
+roslaunch waver_viz rviz.launch
+```
+
+#### Launch arguments
+
+The main entry point is `rviz.launch`. It loads the robot model into `robot_description` (via `xacro`), includes `waver_description/description.launch` (to start state publishers), and launches RViz using a configurable `.rviz` layout.
+
+**Available arguments**
+
+- `model` _(string)_: Path to the robot model (URDF/Xacro) used for spawning.  
+  Default: `$(find waver_description)/urdf/waver.xacro`
+
+- `gui` _(bool)_: Enable the Joint State Publisher GUI (useful to move joints manually in RViz).  
+  Default: `true`
+
+- `rviz_config` _(string)_: RViz config file to load at startup.  
+  Default: `$(find waver_viz)/rviz/waver.rviz`

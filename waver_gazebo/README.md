@@ -4,57 +4,68 @@
 
 The `waver_gazebo` package is designed to integrate the Wave Rover robot with the Gazebo simulation environment. This package includes the necessary launch files and configurations to simulate the Wave Rover in a realistic world. It allows to test and validate robot behaviors, algorithms, and interactions in a controlled and reproducible environment before deploying them on real hardware.
 
-## Simulation
+## Dependencies
 
-### Prerequisites
-Before using the `waver_gazebo` package, ensure you have the following installed:
-- Docker. [See for details](https://github.com/GGomezMorales/waver?tab=readme-ov-file#how-to-use).
-- [waver_description package](https://github.com/GGomezMorales/waver/tree/noetic/waver_description).
+**Required ROS packages**
 
-### Simulation steps
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/GGomezMorales/waver.git
-   cd waver
-   ```
+- [`waver_description`](https://github.com/GGomezMorales/waver/tree/noetic/waver_description)
+- `gazebo_msgs`
+- `gazebo_plugins`
+- `gazebo_ros`
+- `gazebo_ros_control`
 
-2. Build the Docker image:
-   ```bash
-   ./scripts/build.sh
-   ```
+## Usage
 
-3. Run the Docker container:
-   There are three ways to run a container, depending on your host machine:
-      - **`run_docker.sh`:** Uses the standard Docker command to run the container.
-         ```bash
-         ./scripts/run_docker.sh
-         ```
-      - **`run_cpu.sh`:** Uses [rocker](https://github.com/osrf/rocker) to run the container on a CPU environment.
-         ```bash
-         ./scripts/run_cpu.sh
-         ```
-      - **`run_nvidia.sh`:** Uses [rocker](https://github.com/osrf/rocker) to run the container with NVIDIA GPU support.
-         ```bash
-         ./scripts/run_nvidia.sh
-         ```
+This package can be launched using the project's helper aliases (inside the Docker container) or via standard ROS launch commands.
 
-   After running the container:
-   ```bash
-   root@10bb71e2357e:/waver_ws# 
-   ```
+### Docker container environment (Recommended)
 
-4. ROS environment setup:
-   The Docker image includes an alias to simplify the process of sourcing and building packages within a catkin workspace. To set up the ROS environment, use the following command:
-   ```bash
-   sros
-   ```
+If you are working within the provided Docker environment, a helper function `waver` is defined in `autostart.sh` to simplify the build, source, and launch process.
 
-5. Gazebo launch
-   Finally, to launch the Gazebo simulation with the Wave Rover, use the following command:
-   ```bash
-   roslaunch waver_gazebo gazebo.launch
-   ```
-   To control the robot using teleoperation tools in another terminal use `./scripts/bash.sh` and then the following command:
-   ```bash
-   rosrun teleop_twist_keyboard teleop_twist_keyboard.py
-   ```
+To launch the Gazebo simulation with the Wave Rover:
+
+```bash
+waver gazebo
+```
+
+To control the robot using teleoperation tools in a separate terminal, use the bash helper and run:
+
+```bash
+./scripts/bash.sh
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+
+### Standard ROS environment
+
+If you are not using the Docker container or prefer standard ROS commands, ensure your workspace is built and sourced, then launch the package manually using `roslaunch`:
+
+```bash
+roslaunch waver_gazebo gazebo.launch
+```
+
+#### Launch arguments
+
+The main entry point is `gazebo.launch`. It starts Gazebo, loads a world, and spawns the Wave Rover using the URDF/Xacro from `waver_description`. You can customize the simulation (GUI, paused state, world file, model path, etc.) by passing launch arguments.
+
+**Available arguments**
+
+- `model` _(string)_: Path to the robot model (URDF/Xacro) used for spawning.  
+  Default: `$(find waver_description)/urdf/waver.xacro`
+
+- `world_name` _(string)_: Path to the Gazebo world file to load.  
+  Default: `$(find waver_gazebo)/world/coworking.world`
+
+- `paused` _(bool)_: Start the simulation paused.  
+  Default: `false`
+
+- `use_sim_time` _(bool)_: Use Gazebo’s `/clock` as ROS time (`/use_sim_time`).  
+  Default: `true`
+
+- `gui` _(bool)_: Launch Gazebo with the GUI client.  
+  Default: `true`
+
+- `headless` _(bool)_: Run without rendering (useful for CI or remote machines).  
+  Default: `false`
+
+- `debug` _(bool)_: Enable debug mode for Gazebo/ROS nodes (when supported).  
+  Default: `false`
