@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rasp_pi_camera">
+
+    <xacro:include filename="$(find waver_description)/urdf/materials.xacro" />
+    <xacro:include filename="$(find waver_description)/urdf/util.xacro" />
+
+    <link name="rasp_pi_camera_link">
+        <inertial>
+            <mass value="${rasp_pi_camera_mass}" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="8.188544198245058e-07" iyy="1.3934609636775025e-06" izz="8.837267894803364e-07" ixy="0" iyz="0" ixz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 ${-pi/2}" />
+            <geometry>
+                <mesh filename="package://waver_description/meshes/rasp_pi_camera.stl" scale="${camera_scale}" />
+            </geometry>
+            <xacro:black_material />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 ${-pi/2}" />
+            <geometry>
+                <mesh filename="package://waver_description/meshes/rasp_pi_camera.stl" scale="${camera_scale}" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="rasp_pi_camera_joint" type="fixed">
+        <origin xyz="0.09 0 ${base_to_top}" rpy="0 0 0" />
+        <parent link="top_shell_link" />
+        <child link="rasp_pi_camera_link" />
+    </joint>
+
+</robot>

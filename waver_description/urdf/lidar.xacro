@@ -4,7 +4,7 @@
     <xacro:include filename="$(find waver_description)/urdf/materials.xacro" />
     <xacro:include filename="$(find waver_description)/urdf/util.xacro" />
 
-    <link name="${lidar_link}">
+    <link name="lidar_link">
         <inertial>
             <mass value="${mass_lidar}" />
             <origin xyz="0 0 0" rpy="0 0 0" />
@@ -28,10 +28,10 @@
     <joint name="lidar_joint" type="fixed">
         <origin xyz="0.04 0 ${base_to_top + 0.025}" rpy="0 0 0" />
         <parent link="top_shell_link" />
-        <child link="${lidar_link}" />
+        <child link="lidar_link" />
     </joint>
 
-    <gazebo reference="${lidar_link}">
+    <gazebo reference="lidar_link">
         <material>Gazebo/Black</material>
         <sensor name="${lidar_model}" type="ray">
             <pose>0 0 0 0 0 0</pose>
