@@ -44,6 +44,7 @@ RUN apt-get update && apt-get install -y \
 
 USER root
 ENV RESOLUTION=1820x880
+ENV DISABLE_ROS1_EOL_WARNINGS=0
 
 COPY ./autostart.sh /${WS_ROS}
 RUN chmod +x /${WS_ROS}/autostart.sh

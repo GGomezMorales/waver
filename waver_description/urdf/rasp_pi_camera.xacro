@@ -11,14 +11,14 @@
             <inertia ixx="8.188544198245058e-07" iyy="1.3934609636775025e-06" izz="8.837267894803364e-07" ixy="0" iyz="0" ixz="0" />
         </inertial>
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 ${-pi/2}" />
+            <origin xyz="0 0.0125 0" rpy="0 0 ${-pi/2}" />
             <geometry>
                 <mesh filename="package://waver_description/meshes/rasp_pi_camera.stl" scale="${camera_scale}" />
             </geometry>
             <xacro:black_material />
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 ${-pi/2}" />
+            <origin xyz="0 0.0125 0" rpy="0 0 ${-pi/2}" />
             <geometry>
                 <mesh filename="package://waver_description/meshes/rasp_pi_camera.stl" scale="${camera_scale}" />
             </geometry>
@@ -30,5 +30,45 @@
         <parent link="top_shell_link" />
         <child link="rasp_pi_camera_link" />
     </joint>
+
+    <gazebo reference="rasp_pi_camera_link">
+        <material>Gazebo/Black</material>
+        <sensor name="camera" type="camera">
+            <pose>0 0 -0.0135 0 0 0</pose>
+            <visualize>false</visualize>
+            <update_rate>30</update_rate>
+            <camera>
+                <horizontal_fov>1.1519</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <width>4608</width>
+                    <height>2592</height>
+                </image>
+                <clip>
+                    <near>0.10</near>
+                    <far>100.0</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>camera</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>rasp_pi_camera_link</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+    </gazebo>
 
 </robot>
