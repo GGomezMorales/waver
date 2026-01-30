@@ -1,6 +1,6 @@
 <launch>
     <arg name="model" default="$(find waver_description)/urdf/waver.xacro" />
-    <arg name="world_name" default="$(find waver_gazebo)/world/coworking.world" />
+    <arg name="world_name" default="$(find waver_gazebo)/world/room.world" />
     <arg name="paused" default="false" />
     <arg name="use_sim_time" default="true" />
     <arg name="gui" default="true" />
