@@ -1,13 +1,22 @@
 <?xml version="1.0"?>
 <robot name="waver" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:arg name="camera_type" default="raspi" />
+
   <xacro:include filename="$(find waver_description)/urdf/materials.xacro" />
   <xacro:include filename="$(find waver_description)/urdf/util.xacro" />
   <xacro:include filename="$(find waver_description)/urdf/waver.trans.xacro" />
   <xacro:include filename="$(find waver_description)/urdf/waver.gazebo.xacro" />
   <xacro:include filename="$(find waver_description)/urdf/lidar.xacro" />
   <xacro:include filename="$(find waver_description)/urdf/imu.xacro" />
-  <xacro:include filename="$(find waver_description)/urdf/rasp_pi_camera.xacro" />
+  
+  <xacro:if value="${'$(arg camera_type)' == 'raspi'}">
+    <xacro:include filename="$(find waver_description)/urdf/rasp_pi_camera.xacro" />
+  </xacro:if>
+
+  <xacro:if value="${'$(arg camera_type)' == 'depth'}">
+    <xacro:include filename="$(find waver_description)/urdf/depth_camera_zedxm.xacro" />
+  </xacro:if>
 
   <!-- ******************************* Links ******************************* -->
 

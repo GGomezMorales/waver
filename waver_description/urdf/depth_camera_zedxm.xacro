@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="zed_x_mini">
+
+    <xacro:include filename="$(find waver_description)/urdf/materials.xacro" />
+    <xacro:include filename="$(find waver_description)/urdf/util.xacro" />
+
+    <link name="zed_x_mini_link">
+        <inertial>
+            <mass value="${zed_x_mini_mass}" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="1.2205537500280872e-05" iyy="4.073932956405751e-06" izz="1.3748504884318975e-05" ixy="0" iyz="0" ixz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://waver_description/meshes/zedxm.stl" scale="${zed_x_mini_scale}" />
+            </geometry>
+            <xacro:black_material />
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://waver_description/meshes/zedxm.stl" scale="${zed_x_mini_scale}" />
+            </geometry>
+        </collision>
+    </link>
+
+    <joint name="zed_x_mini_joint" type="fixed">
+        <origin xyz="0.1129 0 ${base_to_top - 0.033}" rpy="0 0 0" />
+        <parent link="top_shell_link" />
+        <child link="zed_x_mini_link" />
+    </joint>
+
+    <link name="zed_x_mini_optical_frame" />
+
+    <joint name="zed_x_mini_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="-${pi/2} 0 -${pi/2}" />
+        <parent link="zed_x_mini_link" />
+        <child link="zed_x_mini_optical_frame" />
+    </joint>
+
+    <gazebo reference="zed_x_mini_link">
+        <material>Gazebo/Black</material>
+        <sensor name="zed_x_mini" type="depth">
+            <update_rate>60.0</update_rate>
+
+            <camera>
+                <horizontal_fov>1.91986</horizontal_fov>
+                <image>
+                    <width>1920</width>
+                    <height>1200</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.15</near>
+                    <far>12.0</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.007</stddev>
+                </noise>
+            </camera>
+
+            <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+                <baseline>0.05</baseline>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>60.0</updateRate>
+                <imageTopicName>rgb/image_rect_color</imageTopicName>
+                <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+                <depthImageTopicName>depth/depth_registered</depthImageTopicName>
+                <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
+                <pointCloudTopicName>point_cloud/cloud_registered</pointCloudTopicName>
+                <frameName>zed_x_mini_optical_frame</frameName>
+                <pointCloudCutoff>0.1</pointCloudCutoff>
+                <pointCloudCutoffMax>8.0</pointCloudCutoffMax>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+                <CxPrime>0</CxPrime>
+                <Cx>0</Cx>
+                <Cy>0</Cy>
+                <focalLength>0</focalLength>
+                <hackBaseline>0</hackBaseline>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+</robot>

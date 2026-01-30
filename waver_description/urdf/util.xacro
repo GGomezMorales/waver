@@ -118,4 +118,8 @@
     <xacro:property name="rasp_pi_camera_mass" value="0.0035" />
     <xacro:property name="camera_scale" value="0.0005 0.0005 0.0005" />
 
+    <!-- ZED X Mini Stereo Camera specifications -->
+    <xacro:property name="zed_x_mini_mass" value="0.015" />
+    <xacro:property name="zed_x_mini_scale" value="1 1 1" />
+
 </robot>
