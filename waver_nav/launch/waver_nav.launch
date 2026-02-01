@@ -1,5 +1,6 @@
 <launch>
-    <arg name="map_file" value="$(find waver_nav)/maps/coworking_map.yaml" />
+    <arg name="map_file" value="$(find waver_nav)/maps/room.yaml" />
+    <arg name="world_name" default="$(find waver_nav)/world/room.world" />
     <arg name="model" default="$(find waver_description)/urdf/waver.xacro" />
     <arg name="rviz_config" default="$(find waver_nav)/rviz/waver.rviz" />
     <arg name="gui" default="true" />
@@ -10,7 +11,9 @@
     <arg name="local" default="teb" />
 
     <!-- Gazebo launch -->
-    <include file="$(find waver_gazebo)/launch/gazebo.launch" />
+    <include file="$(find waver_gazebo)/launch/gazebo.launch">
+        <arg name="world_name" value="$(arg world_name)" />
+    </include>
 
     <!-- Map server launch -->
     <include file="$(find waver_nav)/launch/map_server.launch">
@@ -28,7 +31,7 @@
     <include file="$(find waver_nav)/launch/amcl.launch" />
 
     <!-- Move base launch -->
-    <include file="$(find waver_nav)/launch/move_base.launch" >
+    <include file="$(find waver_nav)/launch/move_base.launch">
         <arg name="base_global_planner" value="$(arg base_global_planner)" />
         <arg name="base_local_planner" value="$(arg base_local_planner)" />
         <arg name="global" value="$(arg global)" />

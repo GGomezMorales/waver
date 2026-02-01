@@ -6,6 +6,6 @@ find_package(catkin REQUIRED)
 catkin_package()
 
 install(
-  DIRECTORY launch maps param rviz
+  DIRECTORY launch maps param rviz world
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

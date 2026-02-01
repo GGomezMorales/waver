@@ -66,8 +66,8 @@
                 <baseline>0.05</baseline>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>60.0</updateRate>
-                <imageTopicName>rgb/image_rect_color</imageTopicName>
-                <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+                <imageTopicName>camera/image_raw</imageTopicName>
+                <cameraInfoTopicName>camera/camera_info</cameraInfoTopicName>
                 <depthImageTopicName>depth/depth_registered</depthImageTopicName>
                 <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
                 <pointCloudTopicName>point_cloud/cloud_registered</pointCloudTopicName>
