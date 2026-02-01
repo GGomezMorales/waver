@@ -72,7 +72,12 @@ The main entry point is `waver_nav.launch`. This launch file centralizes the nav
 ###### Map
 
 - `map_file` _(string)_: Path to the YAML map file loaded by `map_server`.  
-  Default: `$(find waver_nav)/maps/coworking_map.yaml`
+  Default: `$(find waver_nav)/maps/room.yaml`
+
+###### World
+
+- `world_name` _(string)_: Path to the Gazebo world file to load.  
+  Default: `$(find waver_nav)/world/room.world`
 
 ###### Robot model and RViz
 

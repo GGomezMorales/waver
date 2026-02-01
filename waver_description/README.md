@@ -9,7 +9,10 @@ The 3D model was imported into [Fusion 360](https://www.autodesk.com/products/fu
 The package includes:
 
 - **Meshes and URDF files:** These files define the physical and kinematic properties of the Wave Rover, enabling accurate representation and simulation of the robot in a virtual environment.
-- **LIDAR model:** Model of the [LIDAR sensor](https://www.waveshare.com/wiki/DTOF_LIDAR_LD19#3D_Model), fully integrated into the robot’s URDF.
+- **IMU:** Integrated IMU sensor model simulated via `libgazebo_ros_imu_sensor.so`, providing orientation and acceleration data on the `imu` topic.
+- **LIDAR LD19:** Model of the [LIDAR sensor](https://www.waveshare.com/wiki/DTOF_LIDAR_LD19#3D_Model) simulated via `libgazebo_ros_laser.so` plugin to publish laser scan data to the `scan` topic.
+- **Raspberry Pi Camera:** Standard RGB [camera model](https://www.printables.com/model/368779-raspberry-pi-camera-module-3-v3) simulated using `libgazebo_ros_camera.so`, publishing to `image_raw`.
+- **ZED X Mini:** [Depth camera model](https://github.com/stereolabs/zed-ros2-interfaces/blob/master/meshes/zedxm.stl) simulated using `libgazebo_ros_openni_kinect.so`, providing depth images and point clouds (`depth/depth_registered`, `point_cloud/cloud_registered`).
 
 This package is essential for spawning the Wave Rover robot in a simulation environment.
 
@@ -50,5 +53,5 @@ The main entry point is `description.launch`. It loads the robot model into the 
 
 **Available arguments**
 
-- `model` _(string)_: Path to the robot model file to load (URDF or Xacro).  
+- `model` _(string)_: Path to the robot model file to load (URDF or Xacro).
   Default: `$(find waver_description)/urdf/waver.xacro`

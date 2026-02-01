@@ -53,7 +53,7 @@ The main entry point is `gazebo.launch`. It starts Gazebo, loads a world, and sp
   Default: `$(find waver_description)/urdf/waver.xacro`
 
 - `world_name` _(string)_: Path to the Gazebo world file to load.  
-  Default: `$(find waver_gazebo)/world/coworking.world`
+  Default: `$(find waver_gazebo)/world/room.world`
 
 - `paused` _(bool)_: Start the simulation paused.  
   Default: `false`
