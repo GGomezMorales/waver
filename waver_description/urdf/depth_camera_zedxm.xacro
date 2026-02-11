@@ -41,10 +41,11 @@
 
     <gazebo reference="zed_x_mini_link">
         <material>Gazebo/Black</material>
-        <sensor name="depth" type="depth_camera">
+        <sensor name="depth_camera" type="rgbd_camera">
             <visualize>true</visualize>
-            <update_rate>60.0</update_rate>
+            <update_rate>30.0</update_rate>
             <topic>depth_camera</topic>
+            <gz_frame_id>zed_x_mini_link</gz_frame_id>
             <camera>
                 <horizontal_fov>1.047198</horizontal_fov>
                 <image>
