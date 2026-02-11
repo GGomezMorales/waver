@@ -18,9 +18,9 @@
             <xacro:black_material />
         </visual>
         <collision>
-            <origin xyz="0 0 -0.027" rpy="0 0 ${pi/2}" />
+            <origin xyz="0 0 -0.0107" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://waver_description/meshes/LD19.stl" scale="${scale}" />
+                <box size="0.0383 0.0383 0.030" />
             </geometry>
         </collision>
     </link>

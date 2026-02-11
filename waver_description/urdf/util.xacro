@@ -121,5 +121,7 @@
     <!-- ZED X Mini Stereo Camera specifications -->
     <xacro:property name="zed_x_mini_mass" value="0.015" />
     <xacro:property name="zed_x_mini_scale" value="1 1 1" />
+    <xacro:property name="zed_x_mini_dimensions" value="0.030 0.093 0.0315" />
+
 
 </robot>

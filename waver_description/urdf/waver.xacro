@@ -78,12 +78,6 @@
   </link>
 
   <link name="accessories_link">
-    <inertial>
-      <mass value="${mass_acces}" />
-      <origin xyz="${mass_center_acces}" rpy="0 0 ${pi/2}" />
-      <inertia ixx="1.284177729497181e-13" iyy="4.1792730400878273e-13" izz="4.1792732165684473e-13"
-        ixy="0.0" iyz="0.0" ixz="0.0" />
-    </inertial>
     <visual>
       <origin xyz="${position_acces}" rpy="0 0 ${pi/2}" />
       <geometry>
@@ -100,12 +94,6 @@
   </link>
 
   <link name="accessories1_link">
-    <inertial>
-      <mass value="${mass_acces1}" />
-      <origin xyz="${mass_center_acces1}" rpy="0 0 ${pi/2}" />
-      <inertia ixx="8.4505377139432e-14" iyy="3.769648155305237e-13" izz="3.769601126710828e-13"
-        ixy="0.0" iyz="0.0" ixz="0.0" />
-    </inertial>
     <visual>
       <origin xyz="${position_acces1}" rpy="0 0 ${pi/2}" />
       <geometry>
@@ -113,21 +101,9 @@
       </geometry>
       <xacro:black_material />
     </visual>
-    <collision>
-      <origin xyz="${position_acces1}" rpy="0 0 ${pi/2}" />
-      <geometry>
-        <mesh filename="package://waver_description/meshes/accessories1_link.stl" scale="${scale}" />
-      </geometry>
-    </collision>
   </link>
 
   <link name="oled_screen_link">
-    <inertial>
-      <mass value="${mass_screen}" />
-      <origin xyz="${mass_center_screen}" rpy="0 0 ${pi/2}" />
-      <inertia ixx="2.2613546657562738e-14" iyy="1.821435448519393e-13" izz="1.9313666847229008e-13"
-        ixy="0.0" iyz="0.0" ixz="0.0" />
-    </inertial>
     <visual>
       <origin xyz="${position_screen}" rpy="0 0 ${pi/2}" />
       <geometry>
@@ -135,12 +111,6 @@
       </geometry>
       <xacro:dark_blue_material />
     </visual>
-    <collision>
-      <origin xyz="${position_screen}" rpy="0 0 ${pi/2}" />
-      <geometry>
-        <mesh filename="package://waver_description/meshes/oled_screen_link.stl" scale="${scale}" />
-      </geometry>
-    </collision>
   </link>
 
   <link name="wheel_back_left_link">

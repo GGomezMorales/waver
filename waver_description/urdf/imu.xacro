@@ -5,11 +5,6 @@
     <xacro:include filename="$(find waver_description)/urdf/util.xacro" />
 
     <link name="imu_link">
-        <inertial>
-            <mass value="${mass_imu}" />
-            <origin xyz="${mass_center_imu}" rpy="0 0 ${pi/2}" />
-            <inertia ixx="4.297064285474092e-13" iyy="4.199442581059605e-13" izz="7.142756866533696e-13" ixy="0.0" iyz="0.0" ixz="0.0" />
-        </inertial>
         <visual>
             <origin xyz="${position_imu}" rpy="0 0 ${pi/2}" />
             <geometry>
@@ -17,12 +12,6 @@
             </geometry>
             <xacro:dark_green_material />
         </visual>
-        <collision>
-            <origin xyz="${position_imu}" rpy="0 0 ${pi/2}" />
-            <geometry>
-                <mesh filename="package://waver_description/meshes/board_link.stl" scale="${scale}" />
-            </geometry>
-        </collision>
     </link>
 
     <joint name="top_imu_joint" type="fixed">

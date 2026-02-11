@@ -18,9 +18,9 @@
             <xacro:black_material />
         </visual>
         <collision>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 ${base_to_top - 0.039}" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://waver_description/meshes/zedxm.stl" scale="${zed_x_mini_scale}" />
+                <box size="${zed_x_mini_dimensions}" />
             </geometry>
         </collision>
     </link>
