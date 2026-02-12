@@ -6,7 +6,7 @@ The `waver_rviz` package provides visualization for the Wave Rover robot within 
 
 ## Dependencies
 
-**Required ROS packages**
+**Required ROS2 packages**
 
 - [`waver_description`](https://github.com/GGomezMorales/waver/tree/humble/waver_description)
 - `rviz`
@@ -39,7 +39,7 @@ The main entry point is `rviz.launch.xml`. It loads the robot model into `robot_
 
 **Available arguments**
 
-- `use_sim_time` _(bool)_: EIf `true`, the nodes will subscribe to the `/clock` topic for time synchronization. This is required when running the robot in simulators like Rviz2.  
+- `use_sim_time` _(bool)_: If `true`, the nodes will subscribe to the `/clock` topic for time synchronization. This is required when running the robot in simulators like Rviz2.  
    Default: `true`
 
 - `model` _(string)_: Path to the robot model (URDF/Xacro) used for spawning.  

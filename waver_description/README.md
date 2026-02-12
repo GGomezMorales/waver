@@ -13,7 +13,7 @@ The package includes:
 - **IMU:** Integrated IMU sensor model (`type="imu"`) providing orientation and acceleration data, processed by the native sensors system.
 - **LIDAR LD19:** Model of the [LIDAR sensor](https://www.waveshare.com/wiki/DTOF_LIDAR_LD19#3D_Model) (`type="gpu_lidar"`), configured to publish laser scan data via the internal simulation bridge.
 - **Raspberry Pi Camera:** Standard RGB [camera model](https://www.printables.com/model/368779-raspberry-pi-camera-module-3-v3) (`type="camera"`), providing raw image streams.
-- **ZED X Mini:** [Depth camera model](https://github.com/stereolabs/zed-ros2-interfaces/blob/master/meshes/zedxm.stl) (`type="depth_camera"`), providing depth sensing capabilities.
+- **ZED X Mini:** [Depth camera model](https://github.com/stereolabs/zed-ros2-interfaces/blob/master/meshes/zedxm.stl) (`type="rgbd_camera"`), providing depth sensing capabilities.
 
 This package is essential for spawning the Wave Rover robot in a simulation environment.
 
