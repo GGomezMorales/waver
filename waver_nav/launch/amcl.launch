@@ -1,8 +1,0 @@
-<launch>
-    <arg name="amcl_file" default="$(find waver_nav)/param/amcl.yaml" />
-
-    <!-- AMCL node -->
-    <node pkg="amcl" type="amcl" name="amcl" output="screen">
-        <rosparam command="load" file="$(arg amcl_file)" />
-    </node>
-</launch>

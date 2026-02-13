@@ -12,6 +12,7 @@
   <exec_depend>waver_description</exec_depend>
   <exec_depend>waver_gazebo</exec_depend>
   <exec_depend>waver_viz</exec_depend>
+  <exec_depend>slam_toolbox</exec_depend>
   <exec_depend>navigation2</exec_depend>
   <exec_depend>nav2</exec_depend>
   <exec_depend>nav2-bringup</exec_depend>
