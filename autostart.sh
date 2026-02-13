@@ -23,6 +23,8 @@ echo 'waver() { \
         bros && sros && ros2 launch waver_nav gmapping.launch.xml; \
     elif [[ "$1" == "nav" && "$2" == "navigation" ]]; then \
         bros && sros && ros2 launch waver_nav waver_nav.launch.xml; \
+    elif [[ "$1" == "teleop" && -z "$2" ]]; then \
+        sros && ros2 run teleop_twist_keyboard teleop_twist_keyboard; \
     else \
         echo "Use: waver [description|gazebo|nav|rviz]"; \
     fi \
@@ -33,7 +35,7 @@ echo '_waver_completion() { \
     local prev=${COMP_WORDS[COMP_CWORD-1]} \
     
     if [[ $COMP_CWORD -eq 1 ]]; then \
-        COMPREPLY=( $(compgen -W "description gazebo nav rviz" -- "$cur") ); \
+        COMPREPLY=( $(compgen -W "description gazebo nav rviz teleop" -- "$cur") ); \
     elif [[ $COMP_CWORD -eq 2 && "$prev" == "nav" ]]; then \
         COMPREPLY=( $(compgen -W "gmapping navigation" -- "$cur") ); \
     fi \
