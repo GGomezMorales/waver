@@ -16,17 +16,19 @@ echo 'waver() { \
     elif [[ "$1" == "gazebo" && -z "$2" ]]; then \
         bros && sros && ros2 launch waver_gazebo gazebo.launch.xml; \
     elif [[ "$1" == "nav" && -z "$2" ]]; then \
-        bros && sros && ros2 launch waver_nav waver_nav.launch.xml; \
+        bros && sros && ros2 launch nav2_bringup navigation_launch.py; \
+    elif [[ "$1" == "nav" && "$2" == "slam_toolbox" && -z "$3" ]]; then \
+        bros && sros && echo "Use: async_slam_toolbox_node | online_async_launch"; \
+    elif [[ "$1" == "nav" && "$2" == "slam_toolbox" && "$3" == "async_slam_toolbox_node" ]]; then \
+        bros && sros && ros2 launch waver_nav async_slam_toolbox.launch.xml; \
+    elif [[ "$1" == "nav" && "$2" == "slam_toolbox" && "$3" == "online_async_launch" ]]; then \
+        bros && sros && ros2 launch waver_nav online_async.launch.xml; \
     elif [[ "$1" == "rviz" && -z "$2" ]]; then \
         bros && sros && ros2 launch waver_viz rviz.launch.xml; \
-    elif [[ "$1" == "nav" && "$2" == "gmapping" ]]; then \
-        bros && sros && ros2 launch waver_nav gmapping.launch.xml; \
-    elif [[ "$1" == "nav" && "$2" == "navigation" ]]; then \
-        bros && sros && ros2 launch waver_nav waver_nav.launch.xml; \
     elif [[ "$1" == "teleop" && -z "$2" ]]; then \
         sros && ros2 run teleop_twist_keyboard teleop_twist_keyboard; \
     else \
-        echo "Use: waver [description|gazebo|nav|rviz]"; \
+        echo "Use: waver [description|gazebo|nav|rviz|teleop]"; \
     fi \
 }' >> ~/.bashrc
 
@@ -37,7 +39,9 @@ echo '_waver_completion() { \
     if [[ $COMP_CWORD -eq 1 ]]; then \
         COMPREPLY=( $(compgen -W "description gazebo nav rviz teleop" -- "$cur") ); \
     elif [[ $COMP_CWORD -eq 2 && "$prev" == "nav" ]]; then \
-        COMPREPLY=( $(compgen -W "gmapping navigation" -- "$cur") ); \
+        COMPREPLY=( $(compgen -W "slam_toolbox" -- "$cur") ); \
+    elif [[ $COMP_CWORD -eq 3 && "$prev" == "slam_toolbox" ]]; then \
+        COMPREPLY=( $(compgen -W "async_slam_toolbox_node online_async_launch" -- "$cur") ); \
     fi \
 }; \
 complete -F _waver_completion waver' >> ~/.bashrc
