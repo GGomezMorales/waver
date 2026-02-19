@@ -28,7 +28,7 @@ slam_toolbox:
     debug_logging: false
     throttle_scans: 1
     transform_publish_period: 0.02
-    map_update_interval: 2.5
+    map_update_interval: 0.01
     enable_interactive_mode: true
     position_covariance_scale: 1.0
     yaw_covariance_scale: 1.0
@@ -39,15 +39,15 @@ slam_toolbox:
     transform_timeout: 0.2
     tf_buffer_duration: 30.0
     stack_size_to_use: 40000000
-    minimum_travel_distance: 0.25
+    minimum_travel_distance: 0.00001
 
     # Matcher Params
     use_scan_matching: true
     use_scan_barycenter: true
-    minimum_travel_heading: 0.5
+    minimum_travel_heading: 0.1
     scan_buffer_size: 10
     scan_buffer_maximum_scan_distance: 10.0
-    link_match_minimum_response_fine: 0.1
+    link_match_minimum_response_fine: 0.25
     link_scan_maximum_distance: 1.5
     loop_search_maximum_distance: 3.0
     do_loop_closing: true
@@ -57,7 +57,7 @@ slam_toolbox:
     loop_match_minimum_response_fine: 0.45
 
     # Correlation Params - Correlation Params
-    correlation_search_space_dimension: 0.5
+    correlation_search_space_dimension: 0.6
     correlation_search_space_resolution: 0.01
     correlation_search_space_smear_deviation: 0.1
 
@@ -69,14 +69,14 @@ slam_toolbox:
     # Scan Matcher Params
     distance_variance_penalty: 0.5
     angle_variance_penalty: 1.0
-    fine_search_angle_offset: 0.00349
+    fine_search_angle_offset: 0.01745
     coarse_search_angle_offset: 0.349
-    coarse_angle_resolution: 0.0349
+    coarse_angle_resolution: 0.01745
     minimum_angle_penalty: 0.9
-    minimum_distance_penalty: 0.5
+    minimum_dilstance_penalty: 0.5
     use_response_expansion: true
-    min_pass_through: 2
-    occupancy_threshold: 0.1
+    min_pass_through: 3
+    occupancy_threshold: 0.25
 
     # Unknown Params
     check_min_dist_and_heading_precisely: false
