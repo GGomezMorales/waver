@@ -1,8 +1,0 @@
-<launch>
-    <!-- Lifecycle Manager module -->
-    <node name="lifecycle_manager" pkg="nav2_lifecycle_manager" exec="lifecycle_manager"
-        output="screen">
-        <param name="autostart" value="true" />
-        <param name="node_names" value="['map_server']" />
-    </node>
-</launch>
