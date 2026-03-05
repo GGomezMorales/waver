@@ -1,8 +1,8 @@
 <launch>
     <arg name="map_name" default="room" />
-    <let name="map_path" value="/waver_ws/src/waver_nav/$(var map_name)" />
+    <let name="map_path" value="/waver_ws/src/waver_nav/maps/$(var map_name)" />
 
     <!-- Map saver node -->
-    <node name="map_saver" pkg="nav2_map_server" exec="map_saver_cli" args="-f $(var map_path)"
+    <node name="waver_map_saver" pkg="nav2_map_server" exec="map_saver_cli" args="-f $(var map_path)"
         output="screen" />
 </launch>
