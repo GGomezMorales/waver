@@ -49,7 +49,7 @@ waver description
 If you are not using the Docker container or prefer standard ROS2 commands, ensure your workspace is built and sourced, then launch the package manually using `ros2 launch`:
 
 ```bash
-ros2 launch waver_description description.launch.xml
+ros2 launch waver_description description.launch.xml use_sim_time:=false
 ```
 
 #### Launch arguments
@@ -60,17 +60,14 @@ The main entry point is `description.launch.xml`. It loads the robot model into 
 
 - `use_sim_time` _(bool)_: If `true`, the nodes will subscribe to the `/clock` topic for time synchronization. This is required when running the robot in simulators like Gazebo.
   Default: `true`
-
 - `model` _(string)_: Path to the robot model file to load (URDF or Xacro).
   Default: `$(find-pkg-share waver_description)/urdf/waver.xacro`
-
 - `sim_control` _(string)_: Defines the simulation control backend configuration to load.
   Default: `gazebo`
   Options:
 
   - `gazebo`: Loads configuration for the native Gazebo Sim Diff Drive plugin `libgz-sim-diff-drive-system.so`.
   - `ros2`: Loads configuration for ROS 2 Control (hardware interfaces via `gz_ros2_control-system`)
-
 - `camera_type` _(string)_: Selects the camera model to be mounted on the robot.
   Default: `raspi`
   Options:

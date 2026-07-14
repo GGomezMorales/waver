@@ -12,7 +12,7 @@ echo "alias sros='source /opt/ros/${ROS_DISTRO}/setup.bash && source ${WS}/insta
 
 echo 'waver() { \
     if [[ "$1" == "description" && -z "$2" ]]; then \
-        bros && sros && ros2 launch waver_description description.launch.xml; \
+        bros && sros && ros2 launch waver_description description.launch.xml use_sim_time:=false; \
     elif [[ "$1" == "gazebo" && -z "$2" ]]; then \
         bros && sros && ros2 launch waver_gazebo gazebo.launch.xml; \
     elif [[ "$1" == "localization" && -z "$2" ]]; then \
@@ -28,7 +28,7 @@ echo 'waver() { \
     elif [[ "$1" == "navigation" && "$2" == "nav2" && -z "$3" ]]; then \
         bros && sros && ros2 launch waver_navigation navigation.launch.xml backend:=nav2; \
     elif [[ "$1" == "rviz" && -z "$2" ]]; then \
-        bros && sros && ros2 launch waver_viz rviz.launch.xml; \
+        bros && sros && ros2 launch waver_viz rviz.launch.xml use_sim_time:=false; \
     elif [[ "$1" == "teleop" && -z "$2" ]]; then \
         sros && ros2 run teleop_twist_keyboard teleop_twist_keyboard; \
     else \
