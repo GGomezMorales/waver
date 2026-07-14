@@ -1,7 +1,12 @@
+<?xml version="1.0"?>
 <launch>
     <arg name="use_sim_time" default="true" />
+    <arg name="params_file" default="$(find-pkg-share waver_navigation)/param/nav2.yaml" />
 
     <include file="$(find-pkg-share nav2_bringup)/launch/navigation_launch.py">
         <arg name="use_sim_time" value="$(var use_sim_time)" />
+        <arg name="params_file" value="$(var params_file)" />
+        <arg name="autostart" value="$(var autostart)" />
     </include>
+
 </launch>

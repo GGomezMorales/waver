@@ -1,9 +1,0 @@
-<launch>
-    <arg name="backend" default="nav2" />
-    <arg name="use_sim_time" default="true" />
-
-    <include file="$(find-pkg-share waver_navigation)/launch/nav2.launch.xml"
-        if="$(eval '&quot;$(var backend)&quot; == &quot;nav2&quot;')">
-        <arg name="use_sim_time" value="$(var use_sim_time)" />
-    </include>
-</launch>

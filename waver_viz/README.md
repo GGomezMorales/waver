@@ -39,11 +39,6 @@ The main entry point is `rviz.launch.xml`. It loads the robot model into `robot_
 
 **Available arguments**
 
-- `use_sim_time` _(bool)_: If `true`, the nodes will subscribe to the `/clock` topic for time synchronization. This is required when running the robot in simulators like Rviz2.  
-   Default: `true`
-
-- `model` _(string)_: Path to the robot model (URDF/Xacro) used for spawning.  
-   Default: `$(find-pkg-share waver_description)/urdf/waver.xacro`
-
-- `rviz_config` _(string)_: RViz config file to load at startup.  
-   Default: `$(find-pkg-share waver_viz)/rviz/waver.rviz`
+- `use_sim_time` _(bool)_: If `true`, the nodes will subscribe to the `/clock` topic for time synchronization. This is required when running the robot in simulators like Rviz2.Default: `true`
+- `rviz_config` _(string)_: RViz config file to load at startup.
+  Default: `$(find-pkg-share waver_viz)/rviz/waver.rviz`

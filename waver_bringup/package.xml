@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>waver_navigation</name>
+  <name>waver_bringup</name>
   <version>1.0.0</version>
-  <description>The waver_navigation package</description>
+  <description>The waver_bringup package</description>
   <maintainer email="gugomog3@gmail.com">Gustavo Gomez</maintainer>
   <license>Apache 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <exec_depend>navigation2</exec_depend>
-  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>python3-yaml</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

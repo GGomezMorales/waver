@@ -1,0 +1,34 @@
+# Simulation + saved-map localization: Gazebo + map server + AMCL + RViz.
+#
+# AMCL publishes map -> odom against the map served by the map provider;
+# Gazebo publishes odom -> base_footprint. No autonomous navigation.
+
+arguments:
+  use_sim_time: "true"
+
+stages:
+  simulation:
+    enabled: true
+    package: waver_gazebo
+    launch_file: gazebo.launch.xml
+    arguments:
+      world_file: $(find-pkg-share waver_gazebo)/worlds/room.sdf
+
+  map_provider:
+    enabled: true
+    package: waver_localization
+    launch_file: map_server.launch.xml
+    arguments:
+      map: $(find-pkg-share waver_localization)/maps/room.yaml
+
+  localization:
+    enabled: true
+    package: waver_localization
+    launch_file: amcl.launch.xml
+    arguments:
+      params_file: $(find-pkg-share waver_localization)/param/amcl.yaml
+
+  visualization:
+    enabled: true
+    package: waver_viz
+    launch_file: rviz.launch.xml

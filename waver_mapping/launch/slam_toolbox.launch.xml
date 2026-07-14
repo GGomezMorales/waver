@@ -7,4 +7,5 @@
         output="screen">
         <param from="$(var param_file)" />
     </node>
+
 </launch>

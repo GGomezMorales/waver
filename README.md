@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a collection of ROS (Noetic) packages designed to be executed both in simulation and on a real robot, with a focus on the [Wave Rover](https://www.waveshare.com/wave-rover.htm) by [Waveshare](https://www.waveshare.com/) as the primary hardware platform. These packages include launch files, configuration files, and resources necessary for running the ROS nodes. This project also includes Docker implementations to simplify running simulations on different operation systems or deploying the software on a real robot. This flexibility allows users to simulate the [Wave Rover](https://www.waveshare.com/wave-rover.htm) in a virtual environment or directly implement the software on the robot. As an open source project, encouraging contributions and replication.
+This repository contains a collection of ROS 2 (Humble) packages designed to be executed both in simulation and on a real robot, with a focus on the [Wave Rover](https://www.waveshare.com/wave-rover.htm) by [Waveshare](https://www.waveshare.com/) as the primary hardware platform. These packages include launch files, configuration files, and resources necessary for running the ROS nodes. This project also includes Docker implementations to simplify running simulations on different operation systems or deploying the software on a real robot. This flexibility allows users to simulate the [Wave Rover](https://www.waveshare.com/wave-rover.htm) in a virtual environment or directly implement the software on the robot. As an open source project, encouraging contributions and replication.
 
 ## Motivation
 
@@ -12,12 +12,13 @@ This project aims to create a low-cost robotic platform that serves as a base fo
 
 ROS packages for Wave Rover, supporting both simulation and real robot use:
 
+- **`waver_bringup`**: Generic, profile-driven bringup that composes the whole system from YAML profiles. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_bringup)
 - **`waver_description`**: URDF files for robot description. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_description)
 - **`waver_gazebo`**: Gazebo simulation integration. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_gazebo)
-- **`waver_localization`**: Localization backends, map server launch files, and maps. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_localization)
-- **`waver_mapping`**: Mapping backends and map saving tools. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_mapping)
-- **`waver_navigation`**: Navigation launch selectors. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_navigation)
-- **`waver_viz`**: RViz visualization tools. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_viz)
+- **`waver_localization`**: Map provider and localization launch files, parameters, and maps. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_localization)
+- **`waver_mapping`**: Mapping launch files, parameters, and map saving tools. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_mapping)
+- **`waver_navigation`**: Navigation launch files and Waver-specific parameters. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_navigation)
+- **`waver_viz`**: RViz2 visualization tools. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_viz)
 
 ## Key features
 

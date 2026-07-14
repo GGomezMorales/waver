@@ -55,5 +55,5 @@ The main entry point is `gazebo.launch.xml`. It starts Gazebo, loads a world, an
 - `model` _(string)_: Path to the robot model (URDF/Xacro) used for spawning.  
   Default: `$(find-pkg-share waver_description)/urdf/waver.xacro`
 
-- `world_name` _(string)_: Path to the Gazebo world file to load.  
+- `world_file` _(string)_: Path to the Gazebo world file to load.  
   Default: `$(find-pkg-share waver_gazebo)/worlds/room.sdf`
