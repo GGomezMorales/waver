@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-    <arg name="param_file" default="$(find-pkg-share waver_nav)/param/mapper_params_online_async.yaml" />
+    <arg name="param_file" default="$(find-pkg-share waver_mapping)/param/slam_toolbox.yaml" />
 
     <!-- Async Slam Toolbox node -->
     <node name="slam_toolbox" pkg="slam_toolbox" exec="async_slam_toolbox_node"

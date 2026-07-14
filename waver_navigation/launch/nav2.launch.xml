@@ -1,0 +1,7 @@
+<launch>
+    <arg name="use_sim_time" default="true" />
+
+    <include file="$(find-pkg-share nav2_bringup)/launch/navigation_launch.py">
+        <arg name="use_sim_time" value="$(var use_sim_time)" />
+    </include>
+</launch>

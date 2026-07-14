@@ -14,7 +14,9 @@ ROS packages for Wave Rover, supporting both simulation and real robot use:
 
 - **`waver_description`**: URDF files for robot description. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_description)
 - **`waver_gazebo`**: Gazebo simulation integration. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_gazebo)
-- **`waver_nav`**: Navigation capabilities. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_nav)
+- **`waver_localization`**: Localization backends, map server launch files, and maps. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_localization)
+- **`waver_mapping`**: Mapping backends and map saving tools. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_mapping)
+- **`waver_navigation`**: Navigation launch selectors. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_navigation)
 - **`waver_viz`**: RViz visualization tools. [See](https://github.com/GGomezMorales/waver/tree/humble/waver_viz)
 
 ## Key features

@@ -1,0 +1,13 @@
+<launch>
+    <arg name="backend" default="amcl" />
+    <arg name="use_sim_time" default="true" />
+
+    <include file="$(find-pkg-share waver_localization)/launch/map_server.launch.xml">
+        <arg name="use_sim_time" value="$(var use_sim_time)" />
+    </include>
+
+    <include file="$(find-pkg-share waver_localization)/launch/amcl.launch.xml"
+        if="$(eval '&quot;$(var backend)&quot; == &quot;amcl&quot;')">
+        <arg name="use_sim_time" value="$(var use_sim_time)" />
+    </include>
+</launch>

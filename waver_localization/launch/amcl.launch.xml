@@ -1,0 +1,18 @@
+<launch>
+    <arg name="use_sim_time" default="true" />
+    <arg name="params_file" default="$(find-pkg-share waver_localization)/param/amcl.yaml" />
+
+    <!-- AMCL node -->
+    <node name="waver_amcl" pkg="nav2_amcl" exec="amcl" output="screen">
+        <param from="$(var params_file)" />
+        <param name="use_sim_time" value="$(var use_sim_time)" />
+    </node>
+
+    <node name="waver_lifecycle_manager_amcl" pkg="nav2_lifecycle_manager" exec="lifecycle_manager"
+        output="screen">
+        <param name="autostart" value="true" />
+        <param name="node_names" value="['waver_amcl']" />
+        <param name="use_sim_time" value="$(var use_sim_time)" />
+    </node>
+
+</launch>

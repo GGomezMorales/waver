@@ -1,0 +1,7 @@
+<launch>
+    <arg name="use_sim_time" default="true" />
+    <arg name="configuration_directory" default="$(find-pkg-share waver_mapping)/config" />
+    <arg name="configuration_basename" default="waver.lua" />
+
+    <!-- TODO: Add Cartographer launch configuration. -->
+</launch>
