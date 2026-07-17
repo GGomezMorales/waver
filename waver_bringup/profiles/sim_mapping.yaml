@@ -26,3 +26,5 @@ stages:
     enabled: true
     package: waver_viz
     launch_file: rviz.launch.xml
+    arguments:
+      rviz_config: $(find-pkg-share waver_viz)/rviz/mapping.rviz
