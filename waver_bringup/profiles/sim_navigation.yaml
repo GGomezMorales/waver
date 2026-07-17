@@ -12,6 +12,8 @@ stages:
     package: waver_gazebo
     launch_file: gazebo.launch.xml
     arguments:
+      gui: "true"
+      model: $(find-pkg-share waver_description)/urdf/waver.xacro
       world_file: $(find-pkg-share waver_gazebo)/worlds/room.sdf
 
   map_provider:
@@ -40,3 +42,5 @@ stages:
     enabled: true
     package: waver_viz
     launch_file: rviz.launch.xml
+    arguments:
+      rviz_config: $(find-pkg-share waver_viz)/rviz/navigation.rviz
