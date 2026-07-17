@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository contains a collection of ROS 2 (Humble) packages designed to be executed both in simulation and on a real robot, with a focus on the [Wave Rover](https://www.waveshare.com/wave-rover.htm) by [Waveshare](https://www.waveshare.com/) as the primary hardware platform. These packages include launch files, configuration files, and resources necessary for running the ROS nodes. This project also includes Docker implementations to simplify running simulations on different operation systems or deploying the software on a real robot. This flexibility allows users to simulate the [Wave Rover](https://www.waveshare.com/wave-rover.htm) in a virtual environment or directly implement the software on the robot. As an open source project, encouraging contributions and replication.
+This repository contains a collection of ROS2 (Humble) packages designed to be executed both in simulation and on a real robot, with a focus on the [Wave Rover](https://www.waveshare.com/wave-rover.htm) by [Waveshare](https://www.waveshare.com/) as the primary hardware platform. These packages include launch files, configuration files, and resources necessary for running the ROS nodes. This project also includes Docker implementations to simplify running simulations on different operation systems or deploying the software on a real robot. This flexibility allows users to simulate the [Wave Rover](https://www.waveshare.com/wave-rover.htm) in a virtual environment or directly implement the software on the robot. As an open source project, encouraging contributions and replication.
 
 ## Motivation
 
