@@ -1,16 +1,24 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="use_sim_time" default="true" />
+    <arg name="gui" default="true" />
     <arg name="model" default="$(find-pkg-share waver_description)/urdf/waver.xacro" />
     <arg name="world_file" default="$(find-pkg-share waver_gazebo)/worlds/room.sdf" />
+    <arg name="gz_client_file" default="$(find-pkg-share waver_gazebo)/config/gz_client.config" />
 
     <include file="$(find-pkg-share waver_description)/launch/description.launch.xml">
         <arg name="use_sim_time" value="$(var use_sim_time)" />
         <arg name="model" value="$(var model)" />
     </include>
 
-    <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py">
-        <arg name="gz_args" value="-r -v 4 $(var world_file)" />
+    <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py"
+        if="$(var gui)">
+        <arg name="gz_args" value="-r -v 4 $(var world_file) --gui-config $(var gz_client_file)" />
+    </include>
+
+    <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py"
+        unless="$(var gui)">
+        <arg name="gz_args" value="-r -s -v 4 $(var world_file) --gui-config $(var gz_client_file)" />
     </include>
 
     <node pkg="ros_gz_sim" exec="create" name="spawn_waver"
