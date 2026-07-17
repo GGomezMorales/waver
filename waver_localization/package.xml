@@ -1,25 +1,18 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>waver_nav</name>
+  <name>waver_localization</name>
   <version>1.0.0</version>
-  <description>The waver_nav package</description>
+  <description>The waver_localization package</description>
   <maintainer email="gugomog3@gmail.com">Gustavo Gomez</maintainer>
   <license>Apache 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <exec_depend>ros2launch</exec_depend>
-  <exec_depend>waver_description</exec_depend>
-  <exec_depend>waver_gazebo</exec_depend>
-  <exec_depend>waver_viz</exec_depend>
-  <exec_depend>slam_toolbox</exec_depend>
-  <exec_depend>navigation2</exec_depend>
-  <exec_depend>nav2</exec_depend>
-  <exec_depend>nav2-bringup</exec_depend>
+  <exec_depend>nav2_amcl</exec_depend>
   <exec_depend>nav2_map_server</exec_depend>
+  <exec_depend>nav2_lifecycle_manager</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
   </export>
-
 </package>

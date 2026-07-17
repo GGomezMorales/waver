@@ -6,7 +6,9 @@
   <arg name="camera_type" default="raspi" description="(raspi/depth)" />
 
   <!-- Joint State Publisher -->
-  <node name="joint_state_publisher" pkg="joint_state_publisher" exec="joint_state_publisher" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" exec="joint_state_publisher">
+    <param name="use_sim_time" value="$(var use_sim_time)" />
+  </node>
 
   <!-- Robot State Publisher -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" exec="robot_state_publisher" output="screen">

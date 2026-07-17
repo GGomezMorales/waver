@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="map_name" default="room" />
+    <let name="map_path" value="/waver_ws/src/$(var map_name)" />
+
+    <!-- Map saver node -->
+    <node name="waver_map_saver" pkg="nav2_map_server" exec="map_saver_cli" output="screen"
+        args="-f $(var map_path)" />
+
+</launch>

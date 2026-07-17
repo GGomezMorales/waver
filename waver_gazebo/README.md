@@ -43,6 +43,12 @@ If you are not using the Docker container or prefer standard ROS2 commands, ensu
 ros2 launch waver_gazebo gazebo.launch.xml
 ```
 
+To run the simulation without the Gazebo GUI:
+
+```bash
+ros2 launch waver_gazebo gazebo.launch.xml gui:=false
+```
+
 #### Launch arguments
 
 The main entry point is `gazebo.launch.xml`. It starts Gazebo, loads a world, and spawns the Wave Rover using the URDF/Xacro from `waver_description`. You can customize the simulation (GUI, paused state, world file, model path, etc.) by passing launch arguments.
@@ -52,8 +58,14 @@ The main entry point is `gazebo.launch.xml`. It starts Gazebo, loads a world, an
 - `use_sim_time` _(bool)_: Use Gazebo’s `/clock` as ROS2 time (`/use_sim_time`).  
   Default: `true`
 
+- `gui` _(bool)_: Start the Gazebo graphical interface. If set to `false`, Gazebo runs in server-only mode.
+  Default: `true`
+
 - `model` _(string)_: Path to the robot model (URDF/Xacro) used for spawning.  
   Default: `$(find-pkg-share waver_description)/urdf/waver.xacro`
 
-- `world_name` _(string)_: Path to the Gazebo world file to load.  
+- `world_file` _(string)_: Path to the Gazebo world file to load.  
   Default: `$(find-pkg-share waver_gazebo)/worlds/room.sdf`
+
+- `gz_client_file` _(string)_: Path to the Gazebo Client GUI configuration file.
+  Default: `$(find-pkg-share waver_gazebo)/config/gz_client.config`
