@@ -7,7 +7,7 @@
     <link name="lidar_link">
         <inertial>
             <mass value="${mass_lidar}" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="-0.003726 0 -0.01135" rpy="0 0 ${pi/2}" />
             <inertia ixx="1.1969407982864896e-05" iyy="1.4912788506851203e-05" izz="1.9371239273809308e-05" ixy="0.0" iyz="0.0" ixz="0.0" />
         </inertial>
         <visual>
@@ -18,9 +18,9 @@
             <xacro:black_material />
         </visual>
         <collision>
-            <origin xyz="0 0 -0.0107" rpy="0 0 0" />
+            <origin xyz="-0.003726 0 -0.01135" rpy="0 0 0" />
             <geometry>
-                <box size="0.0383 0.0383 0.030" />
+                <box size="0.04629 0.05395 0.0313" />
             </geometry>
         </collision>
     </link>

@@ -9,6 +9,7 @@
     <include file="$(find-pkg-share waver_description)/launch/description.launch.xml">
         <arg name="use_sim_time" value="$(var use_sim_time)" />
         <arg name="model" value="$(var model)" />
+        <arg name="publish_joint_states" value="false" />
     </include>
 
     <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py"

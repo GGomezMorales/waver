@@ -5,6 +5,11 @@
     <xacro:include filename="$(find waver_description)/urdf/util.xacro" />
 
     <link name="rasp_pi_camera_link">
+        <inertial>
+            <mass value="${rasp_pi_camera_mass}" />
+            <origin xyz="0.005755 0 -0.011931" rpy="0 0 0" />
+            <inertia ixx="3.483652406539673e-07" iyy="2.047136044968006e-07" izz="2.209316971761668e-07" ixy="0" ixz="0" iyz="0" />
+        </inertial>
         <visual>
             <origin xyz="0 0.0125 0" rpy="0 0 ${-pi/2}" />
             <geometry>
@@ -14,9 +19,9 @@
             <xacro:black_material />
         </visual>
         <collision>
-            <origin xyz="0.005 0 -0.012" rpy="0 0 0" />
+            <origin xyz="0.005755 0 -0.011931" rpy="0 0 0" />
             <geometry>
-                <box size="0.01 0.025 0.023" />
+                <box size="0.01151 0.025 0.023862" />
             </geometry>
         </collision>
     </link>

@@ -48,6 +48,7 @@
     <gazebo reference="wheel_back_left_link">
         <mu1>0.8</mu1>
         <mu2>0.8</mu2>
+        <fdir1>0 0 1</fdir1>
         <selfCollide>false</selfCollide>
         <material>Gazebo/Black</material>
     </gazebo>
@@ -55,6 +56,7 @@
     <gazebo reference="wheel_front_left_link">
         <mu1>0.8</mu1>
         <mu2>0.8</mu2>
+        <fdir1>0 0 1</fdir1>
         <selfCollide>false</selfCollide>
         <material>Gazebo/Black</material>
     </gazebo>
@@ -62,6 +64,7 @@
     <gazebo reference="wheel_front_right_link">
         <mu1>0.8</mu1>
         <mu2>0.8</mu2>
+        <fdir1>0 0 1</fdir1>
         <selfCollide>false</selfCollide>
         <material>Gazebo/Black</material>
     </gazebo>
@@ -69,6 +72,7 @@
     <gazebo reference="wheel_back_right_link">
         <mu1>0.8</mu1>
         <mu2>0.8</mu2>
+        <fdir1>0 0 1</fdir1>
         <selfCollide>false</selfCollide>
         <material>Gazebo/Black</material>
     </gazebo>
@@ -84,6 +88,34 @@
         <plugin filename="libgz-sim-sensors-system.so" name="gz::sim::systems::Sensors">
             <render_engine>ogre2</render_engine>
         </plugin>
+
+        <plugin filename="libgz-sim-wheel-slip-system.so"
+            name="gz::sim::systems::WheelSlip">
+            <wheel link_name="wheel_front_left_link">
+                <slip_compliance_lateral>${wheel_slip_lateral}</slip_compliance_lateral>
+                <slip_compliance_longitudinal>${wheel_slip_longitudinal}</slip_compliance_longitudinal>
+                <wheel_normal_force>${wheel_normal_force}</wheel_normal_force>
+                <wheel_radius>${wheel_radius}</wheel_radius>
+            </wheel>
+            <wheel link_name="wheel_front_right_link">
+                <slip_compliance_lateral>${wheel_slip_lateral}</slip_compliance_lateral>
+                <slip_compliance_longitudinal>${wheel_slip_longitudinal}</slip_compliance_longitudinal>
+                <wheel_normal_force>${wheel_normal_force}</wheel_normal_force>
+                <wheel_radius>${wheel_radius}</wheel_radius>
+            </wheel>
+            <wheel link_name="wheel_back_left_link">
+                <slip_compliance_lateral>${wheel_slip_lateral}</slip_compliance_lateral>
+                <slip_compliance_longitudinal>${wheel_slip_longitudinal}</slip_compliance_longitudinal>
+                <wheel_normal_force>${wheel_normal_force}</wheel_normal_force>
+                <wheel_radius>${wheel_radius}</wheel_radius>
+            </wheel>
+            <wheel link_name="wheel_back_right_link">
+                <slip_compliance_lateral>${wheel_slip_lateral}</slip_compliance_lateral>
+                <slip_compliance_longitudinal>${wheel_slip_longitudinal}</slip_compliance_longitudinal>
+                <wheel_normal_force>${wheel_normal_force}</wheel_normal_force>
+                <wheel_radius>${wheel_radius}</wheel_radius>
+            </wheel>
+        </plugin>
     </gazebo>
 
     <ros2_control name="waver" type="system">
@@ -93,8 +125,8 @@
 
         <joint name="wheel_front_left_joint">
             <command_interface name="velocity">
-                <param name="min">-10</param>
-                <param name="max">10</param>
+                <param name="min">-40.0</param>
+                <param name="max">40.0</param>
             </command_interface>
             <state_interface name="position" />
             <state_interface name="velocity" />
@@ -102,8 +134,8 @@
 
         <joint name="wheel_front_right_joint">
             <command_interface name="velocity">
-                <param name="min">-10</param>
-                <param name="max">10</param>
+                <param name="min">-40.0</param>
+                <param name="max">40.0</param>
             </command_interface>
             <state_interface name="position" />
             <state_interface name="velocity" />
@@ -111,8 +143,8 @@
 
         <joint name="wheel_back_left_joint">
             <command_interface name="velocity">
-                <param name="min">-10.0</param>
-                <param name="max">10.0</param>
+                <param name="min">-40.0</param>
+                <param name="max">40.0</param>
             </command_interface>
             <state_interface name="position" />
             <state_interface name="velocity" />
@@ -120,8 +152,8 @@
 
         <joint name="wheel_back_right_joint">
             <command_interface name="velocity">
-                <param name="min">-10.0</param>
-                <param name="max">10.0</param>
+                <param name="min">-40.0</param>
+                <param name="max">40.0</param>
             </command_interface>
             <state_interface name="position" />
             <state_interface name="velocity" />
