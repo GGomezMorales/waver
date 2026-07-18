@@ -1,6 +1,6 @@
-# Simulation + online mapping: Gazebo + SLAM Toolbox + RViz.
+# Simulation + online mapping: Gazebo + EKF + SLAM Toolbox + RViz.
 #
-# SLAM Toolbox publishes map -> odom; Gazebo publishes odom -> base_footprint.
+# SLAM Toolbox publishes map -> odom; the EKF publishes odom -> base_footprint.
 # Save the resulting map with:
 #   ros2 launch waver_mapping map_saver.launch.xml map_name:=<name>
 
@@ -16,6 +16,16 @@ stages:
       gui: "true"
       model: $(find-pkg-share waver_description)/urdf/waver.xacro
       world_file: $(find-pkg-share waver_gazebo)/worlds/room.sdf
+
+  state_estimation:
+    enabled: true
+    package: waver_localization
+    launch_file: ekf.launch.xml
+    arguments:
+      params_file: $(find-pkg-share waver_localization)/param/ekf.yaml
+      odom_topic: odom/raw
+      imu_topic: imu/data
+      output_topic: odom
 
   mapping:
     enabled: true

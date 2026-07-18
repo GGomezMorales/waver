@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <launch>
-    <arg name="param_file" default="$(find-pkg-share waver_mapping)/param/slam_toolbox.yaml" />
+    <arg name="params_file" default="$(find-pkg-share waver_mapping)/param/slam_toolbox.yaml" />
 
     <!-- Async Slam Toolbox node -->
     <node name="slam_toolbox" pkg="slam_toolbox" exec="async_slam_toolbox_node"
         output="screen">
-        <param from="$(var param_file)" />
+        <param from="$(var params_file)" />
     </node>
 
 </launch>
