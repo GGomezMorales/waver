@@ -18,12 +18,16 @@ diff_drive_base_controller:
 
     linear.x.has_velocity_limits: true
     linear.x.max_velocity: 1.25
+    linear.x.has_acceleration_limits: true
+    linear.x.max_acceleration: 2.0
     angular.z.has_velocity_limits: true
-    angular.z.max_velocity: 1.5
+    angular.z.max_velocity: 4.7124
+    angular.z.has_acceleration_limits: true
+    angular.z.max_acceleration: 7.5
 
     use_stamped_vel: false
 
     publish_rate: 30.0
     base_frame_id: base_footprint
     odom_frame_id: odom
-    enable_odom_tf: true
+    enable_odom_tf: false

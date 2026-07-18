@@ -87,14 +87,14 @@
       <wheel_separation>${wheel_separation}</wheel_separation>
       <wheel_radius>${wheel_radius}</wheel_radius>
 
-      <max_linear_velocity>0.3</max_linear_velocity>
-      <min_linear_velocity>-0.3</min_linear_velocity>
-      <max_angular_velocity>1.5</max_angular_velocity>
-      <min_angular_velocity>-1.5</min_angular_velocity>
+      <max_linear_velocity>1.25</max_linear_velocity>
+      <min_linear_velocity>-1.25</min_linear_velocity>
+      <max_angular_velocity>${1.5 * pi}</max_angular_velocity>
+      <min_angular_velocity>${-1.5 * pi}</min_angular_velocity>
       <max_linear_acceleration>2.0</max_linear_acceleration>
       <min_linear_acceleration>-2.0</min_linear_acceleration>
-      <max_angular_acceleration>4.0</max_angular_acceleration>
-      <min_angular_acceleration>-4.0</min_angular_acceleration>
+      <max_angular_acceleration>7.5</max_angular_acceleration>
+      <min_angular_acceleration>-7.5</min_angular_acceleration>
 
       <topic>cmd_vel</topic>
       <odom_topic>odometry</odom_topic>
