@@ -4,9 +4,11 @@
   <arg name="model" default="$(find-pkg-share waver_description)/urdf/waver.xacro" />
   <arg name="sim_control" default="gazebo" description="(gazebo/ros2)" />
   <arg name="camera_type" default="raspi" description="(raspi/depth)" />
+  <arg name="publish_joint_states" default="true" />
 
   <!-- Joint State Publisher -->
-  <node name="joint_state_publisher" pkg="joint_state_publisher" exec="joint_state_publisher">
+  <node name="joint_state_publisher" pkg="joint_state_publisher" exec="joint_state_publisher"
+    if="$(var publish_joint_states)">
     <param name="use_sim_time" value="$(var use_sim_time)" />
   </node>
 

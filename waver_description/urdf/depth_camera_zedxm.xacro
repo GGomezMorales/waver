@@ -7,7 +7,7 @@
     <link name="zed_x_mini_link">
         <inertial>
             <mass value="${zed_x_mini_mass}" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="-0.008213 0 0.015909" rpy="0 0 0" />
             <inertia ixx="1.2205537500280872e-05" iyy="4.073932956405751e-06" izz="1.3748504884318975e-05" ixy="0" iyz="0" ixz="0" />
         </inertial>
         <visual>
@@ -18,7 +18,7 @@
             <xacro:black_material />
         </visual>
         <collision>
-            <origin xyz="0 0 ${base_to_top - 0.039}" rpy="0 0 0" />
+            <origin xyz="-0.008213 0 0.015909" rpy="0 0 0" />
             <geometry>
                 <box size="${zed_x_mini_dimensions}" />
             </geometry>

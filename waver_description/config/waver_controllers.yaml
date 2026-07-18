@@ -1,6 +1,6 @@
 controller_manager:
   ros__parameters:
-    update_rate: 30
+    update_rate: 60
 
     diff_drive_base_controller:
       type: diff_drive_controller/DiffDriveController
@@ -13,13 +13,13 @@ diff_drive_base_controller:
     left_wheel_names: ["wheel_front_left_joint", "wheel_back_left_joint"]
     right_wheel_names: ["wheel_front_right_joint", "wheel_back_right_joint"]
 
-    wheel_separation: 0.123
+    wheel_separation: 0.130673077
     wheel_radius: 0.0406
 
     linear.x.has_velocity_limits: true
-    linear.x.max_velocity: 2.0
+    linear.x.max_velocity: 1.25
     angular.z.has_velocity_limits: true
-    angular.z.max_velocity: 2.0
+    angular.z.max_velocity: 1.5
 
     use_stamped_vel: false
 

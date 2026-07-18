@@ -5,7 +5,7 @@
     <xacro:property name="triple_zero" value="0 0 0" />
     <xacro:property name="scale" value="0.001 0.001 0.001" />
     <xacro:property name="floor_to_top" value="88.5e-03" />
-    <xacro:property name="floor_to_base" value="33.7e-03" />
+    <xacro:property name="floor_to_base" value="35.800994e-03" />
     <xacro:property name="base_to_top" value="${ floor_to_top - floor_to_base }" />
     <xacro:property name="length" value="183e-03" />
 
@@ -14,7 +14,7 @@
     <xacro:property name="pos_y_base" value="-6.582658272236586e-06" />
     <xacro:property name="pos_z_base" value="0.002703800678253174" />
     <xacro:property name="mass_base" value="0.110" />
-    <xacro:property name="mass_center_base" value="${pos_x_base} ${pos_y_base} ${pos_z_base}" />
+    <xacro:property name="mass_center_base" value="${-pos_y_base} ${pos_x_base} ${pos_z_base}" />
     <xacro:property name="position_base" value="${-pos_x_base} ${-pos_y_base} ${-pos_z_base}" />
 
     <!-- Top specifications -->
@@ -22,7 +22,7 @@
     <xacro:property name="pos_y_top" value="-0.0006833337545394898" />
     <xacro:property name="pos_z_top" value="0.038709537506103515" />
     <xacro:property name="mass_top" value="0.326" />
-    <xacro:property name="mass_center_top" value="${pos_x_top} ${pos_y_top} ${pos_z_top}" />
+    <xacro:property name="mass_center_top" value="${-pos_y_top} ${pos_x_top} ${pos_z_top}" />
     <xacro:property name="position_top" value="${-pos_x_top} ${-pos_y_top} ${-pos_z_top}" />
 
     <!-- Accessories specifications -->
@@ -64,9 +64,13 @@
 
     <!-- Wheels specifications -->
 
-    <xacro:property name="wheel_separation" value="123e-3" />
+    <xacro:property name="wheel_separation" value="130.673077e-3" />
     <xacro:property name="wheel_radius" value="40.6e-3" />
     <xacro:property name="wheel_width" value="42.5e-3" />
+
+    <xacro:property name="wheel_normal_force" value="1.8" />
+    <xacro:property name="wheel_slip_lateral" value="1.0" />
+    <xacro:property name="wheel_slip_longitudinal" value="0.0" />
 
     <!-- WBL specifications -->
     <xacro:property name="pos_x_wbl" value="0.06538582611083985" />
@@ -121,7 +125,6 @@
     <!-- ZED X Mini Stereo Camera specifications -->
     <xacro:property name="zed_x_mini_mass" value="0.015" />
     <xacro:property name="zed_x_mini_scale" value="1 1 1" />
-    <xacro:property name="zed_x_mini_dimensions" value="0.030 0.093 0.0315" />
-
+    <xacro:property name="zed_x_mini_dimensions" value="0.0474 0.093552 0.031818" />
 
 </robot>

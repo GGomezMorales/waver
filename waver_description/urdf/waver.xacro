@@ -37,7 +37,7 @@
     <inertial>
       <mass value="${mass_base}" />
       <origin xyz="${mass_center_base}" rpy="0 0 ${pi/2}" />
-      <inertia ixx="0.00024519341275127564" iyy="0.0001572047252476648" izz="0.0001572047252476648"
+      <inertia ixx="0.00024519341275127564" iyy="0.0001572047252476648" izz="0.0003954468754399687"
         ixy="0.0" iyz="0.0" ixz="0.0" />
     </inertial>
     <visual>
@@ -48,9 +48,9 @@
       <xacro:dark_gray_material />
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
+      <origin xyz="0.000001 0.000049626 0.006036" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://waver_description/meshes/base_link.stl" scale="${scale}" />
+        <box size="0.162386 0.129501 0.019472" />
       </geometry>
     </collision>
   </link>
@@ -70,9 +70,9 @@
       <xacro:dark_gray_material />
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 ${pi/2}" />
+      <origin xyz="0.000001 -0.000001 0.025578" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://waver_description/meshes/top_shell_link.stl" scale="${scale}" />
+        <box size="0.183106 0.163738 0.054312" />
       </geometry>
     </collision>
   </link>
@@ -86,9 +86,9 @@
       <xacro:black_material />
     </visual>
     <collision>
-      <origin xyz="${position_acces}" rpy="0 0 ${pi/2}" />
+      <origin xyz="-0.001662418 0.022091042 0.001653101" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://waver_description/meshes/accessories_link.stl" scale="${scale}" />
+        <box size="0.027758 0.065151 0.027758" />
       </geometry>
     </collision>
   </link>
@@ -209,7 +209,7 @@
 
   <joint
     name="base_joint" type="fixed">
-    <origin xyz="0.0 0.0 33.7e-3" rpy="0 0 0" />
+    <origin xyz="0 0 ${floor_to_base}" rpy="0 0 0" />
     <parent link="base_footprint" />
     <child link="base_link" />
   </joint>
@@ -243,6 +243,7 @@
     <parent link="base_link" />
     <child link="wheel_back_left_link" />
     <axis xyz="0 1 0" />
+    <limit effort="0.07" velocity="10.0" />
   </joint>
 
   <joint name="wheel_front_left_joint" type="continuous">
@@ -250,6 +251,7 @@
     <parent link="base_link" />
     <child link="wheel_front_left_link" />
     <axis xyz="0 1 0" />
+    <limit effort="0.07" velocity="10.0" />
   </joint>
 
   <joint name="wheel_front_right_joint" type="continuous">
@@ -257,6 +259,7 @@
     <parent link="base_link" />
     <child link="wheel_front_right_link" />
     <axis xyz="0 1 0" />
+    <limit effort="0.07" velocity="10.0" />
   </joint>
 
   <joint name="wheel_back_right_joint" type="continuous">
@@ -264,6 +267,7 @@
     <parent link="base_link" />
     <child link="wheel_back_right_link" />
     <axis xyz="0 1 0" />
+    <limit effort="0.07" velocity="10.0" />
   </joint>
 
 </robot>
