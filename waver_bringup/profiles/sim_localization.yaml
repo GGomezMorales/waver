@@ -1,7 +1,7 @@
-# Simulation + saved-map localization: Gazebo + map server + AMCL + RViz.
+# Simulation + saved-map localization: Gazebo + EKF + map server + AMCL + RViz.
 #
 # AMCL publishes map -> odom against the map served by the map provider;
-# Gazebo publishes odom -> base_footprint. No autonomous navigation.
+# the EKF publishes odom -> base_footprint. No autonomous navigation.
 
 arguments:
   use_sim_time: "true"
@@ -15,6 +15,16 @@ stages:
       gui: "true"
       model: $(find-pkg-share waver_description)/urdf/waver.xacro
       world_file: $(find-pkg-share waver_gazebo)/worlds/room.sdf
+
+  state_estimation:
+    enabled: true
+    package: waver_localization
+    launch_file: ekf.launch.xml
+    arguments:
+      params_file: $(find-pkg-share waver_localization)/param/ekf.yaml
+      odom_topic: odom/raw
+      imu_topic: imu/data
+      output_topic: odom
 
   map_provider:
     enabled: true

@@ -28,6 +28,7 @@
             <update_rate>100</update_rate>
             <visualize>true</visualize>
             <topic>imu</topic>
+            <gz_frame_id>imu_link</gz_frame_id>
         </sensor>
     </gazebo>
 </robot>

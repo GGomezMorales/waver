@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="use_sim_time" default="true" />
+    <arg name="params_file" default="$(find-pkg-share waver_localization)/param/ekf.yaml" />
+    <arg name="odom_topic" default="odom/raw" />
+    <arg name="imu_topic" default="imu/data" />
+    <arg name="output_topic" default="odom" />
+
+    <!-- EKF node -->
+    <node name="waver_ekf" pkg="robot_localization" exec="ekf_node" output="screen">
+        <param from="$(var params_file)" />
+        <param name="use_sim_time" value="$(var use_sim_time)" />
+        <remap from="odom/raw" to="$(var odom_topic)" />
+        <remap from="imu/data" to="$(var imu_topic)" />
+        <remap from="odometry/filtered" to="$(var output_topic)" />
+    </node>
+
+</launch>
