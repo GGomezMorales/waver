@@ -16,6 +16,6 @@ endif()
 
 ament_package()
 
-install(DIRECTORY config launch param
+install(DIRECTORY launch param
   DESTINATION share/${PROJECT_NAME}/
 )
