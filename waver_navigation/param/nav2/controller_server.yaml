@@ -151,11 +151,11 @@ controller_server:
       debug_trajectory_details: true
       min_vel_x: 0.0
       min_vel_y: 0.0
-      max_vel_x: 0.60
+      max_vel_x: 0.6
       max_vel_y: 0.0
       max_vel_theta: 2.0
       min_speed_xy: 0.0
-      max_speed_xy: 0.60
+      max_speed_xy: 0.6
       min_speed_theta: 0.0
       acc_lim_x: 1.5
       acc_lim_y: 0.0
@@ -163,12 +163,12 @@ controller_server:
       decel_lim_x: -1.8
       decel_lim_y: 0.0
       decel_lim_theta: -3.0
-      vx_samples: 20
-      vy_samples: 5
-      vtheta_samples: 20
-      sim_time: 0.5
-      linear_granularity: 0.05
-      angular_granularity: 0.025
+      vx_samples: 12
+      vy_samples: 1
+      vtheta_samples: 41
+      sim_time: 1.2
+      linear_granularity: 0.025
+      angular_granularity: 0.05
       transform_tolerance: 0.2
       xy_goal_tolerance: 0.08
       trans_stopped_velocity: 0.03
@@ -178,25 +178,28 @@ controller_server:
         [
           "RotateToGoal",
           "Oscillation",
-          "ObstacleFootprint",
           "GoalAlign",
           "PathAlign",
           "PathDist",
           "GoalDist",
+          "ObstacleFootprint",
         ]
-      ObstacleFootprint.scale: 0.02
-      PathAlign.scale: 32.0
-      PathAlign.forward_point_distance: 0.1
-      GoalAlign.scale: 24.0
-      GoalAlign.forward_point_distance: 0.1
+      ObstacleFootprint.scale: 0.5
+      ObstacleFootprint.sum_scores: false
+      PathAlign.scale: 18.0
+      PathAlign.forward_point_distance: 0.15
+      GoalAlign.scale: 10.0
+      GoalAlign.forward_point_distance: 0.15
       PathDist.scale: 32.0
-      GoalDist.scale: 24.0
+      GoalDist.scale: 20.0
       RotateToGoal.scale: 32.0
       RotateToGoal.slowing_factor: 5.0
       RotateToGoal.lookahead_time: -1.0
       Oscillation.scale: 1.0
       Oscillation.oscillation_reset_dist: 0.05
       Oscillation.oscillation_reset_angle: 0.2
+      Oscillation.oscillation_reset_time: 3.0
+      Oscillation.x_only_threshold: 0.05
 
     # <--------------------------------- TEB controller -------------------------------->
     TebFollowPath:
