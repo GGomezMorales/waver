@@ -43,9 +43,8 @@ stages:
   navigation:
     enabled: true
     package: waver_navigation
-    launch_file: nav2.launch.xml
+    launch_file: nav2.launch.py
     arguments:
-      params_file: $(find-pkg-share waver_navigation)/param/nav2.yaml
       autostart: "true"
 
   visualization:

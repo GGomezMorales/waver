@@ -1,0 +1,327 @@
+controller_server:
+  ros__parameters:
+    use_sim_time: true
+    controller_frequency: 20.0
+    min_x_velocity_threshold: 0.001
+    min_y_velocity_threshold: 0.5
+    min_theta_velocity_threshold: 0.001
+    odom_topic: odom
+    failure_tolerance: 0.3
+    progress_checker_plugin: "progress_checker"
+    goal_checker_plugins: ["general_goal_checker", "precise_goal_checker"]
+    controller_plugins:
+      ["DwbFollowPath", "MPPIFollowPath", "GracefulFollowPath"]
+      # ["DwbFollowPath", "MPPIFollowPath", "GracefulFollowPath", "TebFollowPath"]
+
+    progress_checker:
+      plugin: "nav2_controller::SimpleProgressChecker"
+      required_movement_radius: 0.05
+      movement_time_allowance: 12.0
+
+    general_goal_checker:
+      stateful: true
+      plugin: "nav2_controller::SimpleGoalChecker"
+      xy_goal_tolerance: 0.08
+      yaw_goal_tolerance: 0.15
+
+    precise_goal_checker:
+      plugin: "nav2_controller::SimpleGoalChecker"
+      stateful: true
+      xy_goal_tolerance: 0.03
+      yaw_goal_tolerance: 0.07
+
+    # <--------------------------------- MPPI controller -------------------------------->
+    MPPIFollowPath:
+      plugin: "nav2_mppi_controller::MPPIController"
+      time_steps: 45
+      model_dt: 0.05
+      batch_size: 2000
+      iteration_count: 1
+      motion_model: "DiffDrive"
+
+      vx_std: 0.25
+      vy_std: 0.20
+      wz_std: 0.25
+
+      vx_max: 0.60
+      vx_min: 0.0
+      vy_max: 0.0
+      wz_max: 2.0
+      ax_max: 1.5
+      ax_min: -1.8
+      az_max: 3.0
+
+      prune_distance: 1.20
+      transform_tolerance: 0.2
+      temperature: 0.20
+      gamma: 0.015
+      reset_period: 1.0
+      regenerate_noises: false
+      visualize: false
+
+      TrajectoryVisualizer:
+        trajectory_step: 5
+        time_step: 3
+      AckermannConstraints:
+        min_turning_r: 0.0
+
+      critics:
+        [
+          "ConstraintCritic",
+          "ObstaclesCritic",
+          "GoalCritic",
+          "GoalAngleCritic",
+          "PathAlignCritic",
+          "PathFollowCritic",
+          "PathAngleCritic",
+          "PreferForwardCritic",
+          "VelocityDeadbandCritic",
+        ]
+
+      ConstraintCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 4.0
+
+      ObstaclesCritic:
+        enabled: true
+        cost_power: 1
+        repulsion_weight: 1.25
+        critical_weight: 20.0
+        consider_footprint: true
+        collision_cost: 10000.0
+        collision_margin_distance: 0.05
+        near_goal_distance: 0.35
+        inflation_radius: 0.30
+        cost_scaling_factor: 6.0
+
+      GoalCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 5.0
+        threshold_to_consider: 1.25
+
+      GoalAngleCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 3.0
+        threshold_to_consider: 0.4
+
+      PreferForwardCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 7.0
+        threshold_to_consider: 0.4
+
+      PathAlignCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 10.0
+        max_path_occupancy_ratio: 0.05
+        trajectory_point_step: 4
+        threshold_to_consider: 0.4
+        offset_from_furthest: 10
+        use_path_orientations: false
+
+      PathFollowCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 12.0
+        offset_from_furthest: 12
+        threshold_to_consider: 1.25
+
+      PathAngleCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 2.0
+        offset_from_furthest: 6
+        threshold_to_consider: 0.4
+        max_angle_to_furthest: 1.0
+        forward_preference: true
+
+      VelocityDeadbandCritic:
+        enabled: true
+        cost_power: 1
+        cost_weight: 20.0
+        deadband_velocities: [0.08, 0.0, 0.0]
+
+    # <--------------------------------- DWB controller -------------------------------->
+    DwbFollowPath:
+      plugin: "dwb_core::DWBLocalPlanner"
+      debug_trajectory_details: true
+      min_vel_x: 0.0
+      min_vel_y: 0.0
+      max_vel_x: 0.60
+      max_vel_y: 0.0
+      max_vel_theta: 2.0
+      min_speed_xy: 0.0
+      max_speed_xy: 0.60
+      min_speed_theta: 0.0
+      acc_lim_x: 1.5
+      acc_lim_y: 0.0
+      acc_lim_theta: 3.0
+      decel_lim_x: -1.8
+      decel_lim_y: 0.0
+      decel_lim_theta: -3.0
+      vx_samples: 20
+      vy_samples: 5
+      vtheta_samples: 20
+      sim_time: 0.5
+      linear_granularity: 0.05
+      angular_granularity: 0.025
+      transform_tolerance: 0.2
+      xy_goal_tolerance: 0.08
+      trans_stopped_velocity: 0.03
+      short_circuit_trajectory_evaluation: true
+      stateful: true
+      critics:
+        [
+          "RotateToGoal",
+          "Oscillation",
+          "ObstacleFootprint",
+          "GoalAlign",
+          "PathAlign",
+          "PathDist",
+          "GoalDist",
+        ]
+      ObstacleFootprint.scale: 0.02
+      PathAlign.scale: 32.0
+      PathAlign.forward_point_distance: 0.1
+      GoalAlign.scale: 24.0
+      GoalAlign.forward_point_distance: 0.1
+      PathDist.scale: 32.0
+      GoalDist.scale: 24.0
+      RotateToGoal.scale: 32.0
+      RotateToGoal.slowing_factor: 5.0
+      RotateToGoal.lookahead_time: -1.0
+      Oscillation.scale: 1.0
+      Oscillation.oscillation_reset_dist: 0.05
+      Oscillation.oscillation_reset_angle: 0.2
+
+    # <--------------------------------- TEB controller -------------------------------->
+    TebFollowPath:
+      plugin: "teb_local_planner::TebLocalPlannerROS"
+      odom_topic: odom
+      teb_autosize: 1.0
+      dt_ref: 0.25
+      dt_hysteresis: 0.05
+      min_samples: 3
+      max_samples: 500
+      global_plan_overwrite_orientation: true
+      allow_init_with_backwards_motion: false
+      max_global_plan_lookahead_dist: 1.20
+      global_plan_prune_distance: 0.5
+      exact_arc_length: false
+      feasibility_check_no_poses: 3
+      publish_feedback: false
+      control_look_ahead_poses: 1
+      max_vel_x: 0.60
+      max_vel_x_backwards: 0.60
+      max_vel_y: 0.0
+      max_vel_theta: 2.0
+      acc_lim_x: 1.5
+      acc_lim_theta: 3.0
+      min_turning_radius: 0.0
+      wheelbase: 0.0
+      cmd_angle_instead_rotvel: false
+
+      footprint_model:
+        type: "polygon"
+        vertices: "[[-0.102, -0.097], [-0.102, 0.097], [0.102, 0.097], [0.102, -0.097]]"
+      is_footprint_dynamic: false
+
+      free_goal_vel: false
+
+      min_obstacle_dist: 0.03
+      inflation_dist: 0.20
+      include_costmap_obstacles: true
+      costmap_obstacles_behind_robot_dist: 0.8
+      obstacle_poses_affected: 20
+      dynamic_obstacle_inflation_dist: 0.25
+      include_dynamic_obstacles: true
+      legacy_obstacle_association: false
+      obstacle_association_force_inclusion_factor: 1.5
+      obstacle_association_cutoff_factor: 5.0
+      costmap_converter_plugin: ""
+      costmap_converter_spin_thread: true
+
+      no_inner_iterations: 4
+      no_outer_iterations: 3
+      optimization_activate: true
+      optimization_verbose: false
+
+      penalty_epsilon: 0.05
+      obstacle_cost_exponent: 4.0
+      weight_max_vel_x: 2.0
+      weight_max_vel_theta: 1.0
+      weight_acc_lim_x: 1.0
+      weight_acc_lim_theta: 1.0
+      weight_kinematics_nh: 1000.0
+      weight_kinematics_forward_drive: 10.0
+      weight_kinematics_turning_radius: 1.0
+      weight_optimaltime: 1.0
+      weight_shortest_path: 0.0
+      weight_obstacle: 50.0
+      weight_inflation: 0.2
+      weight_dynamic_obstacle: 10.0
+      weight_dynamic_obstacle_inflation: 0.2
+      weight_viapoint: 3.0
+      global_plan_viapoint_sep: 0.15
+      via_points_ordered: true
+      weight_adapt_factor: 2.0
+
+      enable_homotopy_class_planning: true
+      enable_multithreading: true
+      max_number_classes: 3
+      selection_cost_hysteresis: 1.0
+      selection_prefer_initial_plan: 0.9
+      selection_obst_cost_scale: 1.0
+      selection_viapoint_cost_scale: 1.0
+      selection_alternative_time_cost: false
+      selection_dropping_probability: 0.0
+      roadmap_graph_samples: 15
+      roadmap_graph_area_width: 2.0
+      roadmap_graph_area_length_scale: 1.0
+      h_signature_prescaler: 0.5
+      h_signature_threshold: 0.1
+      obstacle_heading_threshold: 0.45
+      switching_blocking_period: 0.0
+      viapoints_all_candidates: true
+      delete_detours_backwards: true
+      max_ratio_detours_duration_best_duration: 3.0
+      visualize_hc_graph: false
+
+      shrink_horizon_backup: true
+      shrink_horizon_min_duration: 10.0
+      oscillation_recovery: true
+      oscillation_v_eps: 0.1
+      oscillation_omega_eps: 0.1
+      oscillation_recovery_min_duration: 10.0
+      oscillation_filter_duration: 10.0
+      divergence_detection_enable: false
+
+    # <--------------------------------- Graceful controller -------------------------------->
+    GracefulFollowPath:
+      plugin: "nav2_graceful_controller::GracefulController"
+      transform_tolerance: 0.2
+
+      motion_target_dist: 0.50
+      max_robot_pose_search_dist: 1.50
+
+      k_phi: 3.0
+      k_delta: 2.0
+      beta: 0.35
+      lambda: 2.0
+
+      v_linear_min: 0.10
+      v_linear_max: 0.60
+      v_angular_max: 2.0
+
+      slowdown_radius: 0.40
+
+      initial_rotation: false
+      initial_rotation_min_angle: 0.60
+      final_rotation: true
+      rotation_scaling_factor: 0.65
+
+      allow_backward: false

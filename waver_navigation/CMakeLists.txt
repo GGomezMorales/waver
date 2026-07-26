@@ -16,6 +16,6 @@ endif()
 
 ament_package()
 
-install(DIRECTORY launch param
+install(DIRECTORY behavior_trees launch param
   DESTINATION share/${PROJECT_NAME}/
 )
